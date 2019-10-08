@@ -1,18 +1,18 @@
-import { serverURL } from "../../config";
+// import { serverURL } from "../../config";
 
 function status() {
-	return webix.ajax().post(serverURL + "/server/login/status")
+	return webix.ajax().post("/server/login/status")
 		.then(a => a.json());
 }
 
 function login(user, pass) {
-	return webix.ajax().post(serverURL + "/server/login", {
+	return webix.ajax().post("/server/login", {
 		user, pass
 	}).then(a => a.json());
 }
 
 function logout() {
-	return webix.ajax().post(serverURL + "/server/logout")
+	return webix.ajax().post("/server/logout")
 		.then(a => a.json());
 }
 

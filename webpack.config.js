@@ -1,7 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 
-module.exports = function(env) {
+module.exports = function (env) {
 
 	var pack = require("./package.json");
 	var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -14,7 +14,7 @@ module.exports = function(env) {
 		entry: "./sources/myapp.js",
 		output: {
 			path: path.join(__dirname, "codebase"),
-			publicPath:"/codebase/",
+			publicPath: "/codebase/",
 			filename: "myapp.js"
 		},
 		devtool: "inline-source-map",
@@ -37,9 +37,9 @@ module.exports = function(env) {
 		resolve: {
 			extensions: [".js"],
 			modules: ["./sources", "node_modules"],
-			alias:{
-				"jet-views":path.resolve(__dirname, "sources/views"),
-				"jet-locales":path.resolve(__dirname, "sources/locales")
+			alias: {
+				"jet-views": path.resolve(__dirname, "sources/views"),
+				"jet-locales": path.resolve(__dirname, "sources/locales")
 			}
 		},
 		plugins: [
@@ -47,29 +47,31 @@ module.exports = function(env) {
 			new webpack.DefinePlugin({
 				VERSION: `"${pack.version}"`,
 				APPNAME: `"${pack.name}"`,
-				PRODUCTION : production
+				PRODUCTION: production
 			})
 		],
-		devServer:{
-			// proxy:{
-			// 	"/server":"http://localhost:3000"
-			// }
+		devServer: {
+			proxy: [{
+				path: '/server',
+				target: 'http://localhost:3000'
+			}],
+			historyApiFallback: true
 		}
 	};
 
 	if (production) {
 		config.plugins.push(
-			new  webpack.optimize.UglifyJsPlugin({
+			new webpack.optimize.UglifyJsPlugin({
 				test: /\.js$/
 			})
 		);
 	}
-	
+
 	// devServer:{
- //            historyApiFallback:{
- //                index : "index.html"
- //    	    }
- //        }
+	//            historyApiFallback:{
+	//                index : "index.html"
+	//    	    }
+	//        }
 
 	return config;
 }

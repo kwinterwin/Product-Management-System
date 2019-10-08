@@ -26,23 +26,10 @@ const con = mysql.createConnection({
 	password: DBConfig.password
 });
 
-// con.connect(function (err) {
-// 	if (err) throw err;
-// 	console.log("Connected!");
-// });
-
-// con.query("create database if not exists library ", function (err) {
-// 	if (err) throw err;
-// 	console.log("Database create");
-// 	con.query("use library", function (err) {
-// 		if (err) throw err;
-// 		console.log("Database change");
-// 		books.createTable(con);
-// 		users.createTable(con, con);
-// 		orders.createTable(con);
-// 	});
-// });
-
+con.connect((err) => {
+	if (err) throw err;
+	console.log("Connected...");
+});
 
 app.use("/server", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -87,9 +74,8 @@ app.post("/server/logout", users.logout);
 // app.get("/server/comments", comments.getData);
 // app.post("/server/comments", comments.addData);
 
-
 app.listen(port, () => {
 	console.log("Server was started on 3000 port...");
 });
 
-// module.exports = {con};
+module.exports.con = con;

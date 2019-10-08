@@ -1,6 +1,12 @@
 
 const con = require("../../server");
 
+// console.log(con);
+
+// con.con.query("select * from prms.user_logindata", (err, result) => {
+// 	console.log(result);
+// });
+
 let usersData = {
 
 	// createTable(con, con1){
@@ -41,10 +47,10 @@ let usersData = {
 	// },
 
 	login(req, res) {
-		let user = {};
+		const user = {};
 		user.login = req.body.user;
 		user.password = req.body.pass;
-		let query = `select * from users where login='${req.body.user}' and password='${req.body.pass}'`;
+		const query = `select * from prms.user_logindata where login='${user.login}' and password='${user.password}'`;
 		con.con.query(query, (err, result) => {
 			if (err) {
 				res.status(500).send(err);
@@ -70,32 +76,31 @@ let usersData = {
 		res.send({});
 	},
 
-	// authorization: function(req, res){
-	// 	let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
-	// 	con.con.query(query, (err, result)=>{
-	// 		let card_number = result[0].card_number+1;
-	// 		query = `select * from users where login='${req.body.login}'`;
-	// 		con.con.query(query, (err, result)=>{
-	// 			if(err){
-	// 				res.status(500).send(err);
-	// 				console.log(err);
-	// 			}
-	// 			if(result.length==0){
-	// 				query = `INSERT INTO library.users (login, password, role, card_number) VALUES ("${req.body.login}", "${req.body.password}", "${req.body.role}", '${card_number}');`;
-	// 				con.con.query(query, (err)=>{
-	// 					if (err){
-	// 						res.status(500).send(err);
-	// 						console.log(err);
-	// 					}
-	// 					else
-	// 						res.json({});
-	// 				});
-	// 			}
-	// 			else res.json({"message":"Login has already been taken."});
-	// 		});		
-	// 	});
-
-	// },
+	authorization: function (req, res) {
+		// let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
+		// con.con.query(query, (err, result) => {
+		// 	let card_number = result[0].card_number + 1;
+		// 	query = `select * from users where login='${req.body.login}'`;
+		// 	con.con.query(query, (err, result) => {
+		// 		if (err) {
+		// 			res.status(500).send(err);
+		// 			console.log(err);
+		// 		}
+		// 		if (result.length == 0) {
+		// 			query = `INSERT INTO library.users (login, password, role, card_number) VALUES ("${req.body.login}", "${req.body.password}", "${req.body.role}", '${card_number}');`;
+		// 			con.con.query(query, (err) => {
+		// 				if (err) {
+		// 					res.status(500).send(err);
+		// 					console.log(err);
+		// 				}
+		// 				else
+		// 					res.json({});
+		// 			});
+		// 		}
+		// 		else res.json({ "message": "Login has already been taken." });
+		// 	});
+		// });
+	},
 
 	// getAllUsers(req,res){
 	// 	if (req.query.hasOwnProperty("login")){

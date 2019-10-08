@@ -3,7 +3,6 @@ import { JetView } from "webix-jet";
 export default class LoginView extends JetView {
 	config() {
 
-
 		const login_toolbar = {
 			view: "toolbar",
 			margin: -20,
@@ -44,7 +43,7 @@ export default class LoginView extends JetView {
 				{
 					cols: [
 						{ width: 150 },
-						{ view: "button", value: "Login", click: () => this.do_login(), hotkey: "enter", localId: "loginBtn", inputWidth: 100, width: 120 }
+						{ view: "button", value: "Login", click: () => this.do_login(), localId: "loginBtn", inputWidth: 100, width: 120 }
 					]
 				}
 			],
@@ -104,6 +103,7 @@ export default class LoginView extends JetView {
 		const form = this.$$("registerForm");
 		const data = form.getValues();
 		if (data.password === data.confirm_password) {
+			delete data.confirm_password;
 			if (form.validate()) {
 				webix.ajax().post("/server/login/authorization", data).then((result) => {
 					if (result.json().hasOwnProperty("message")) {
