@@ -5,3 +5,7 @@
 .main-layout-toolbar .webix_el_label .webix_el_box {
 	font-size: 22px;
 }
+
+.mdi-lead-pencil:hover {
+	cursor: pointer;
+}

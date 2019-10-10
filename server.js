@@ -6,6 +6,7 @@ const mysql = require("mysql");
 const { DBConfig } = require("./config");
 // const books = require("./server/route/books");
 const users = require("./server/route/users");
+const suppliers = require("./server/route/suppliers");
 // const orders = require("./server/route/orders");
 // const likes = require("./server/route/likes");
 // const comments = require("./server/route/comments");
@@ -63,6 +64,9 @@ app.post("/server/logout", users.logout);
 // app.get("/server/users", users.getAllUsers);
 // app.put("/server/users", users.editData);
 // app.post("/server/users", users.addData);
+
+app.post("/server/suppliers", suppliers.addNewSupplier);
+app.get("/server/suppliers", suppliers.getAllSupliers);
 
 // app.post("/server/orders", orders.addOrder);
 // app.get("/server/orders", orders.getAllData);

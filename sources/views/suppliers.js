@@ -1,5 +1,6 @@
 import { JetView } from "webix-jet";
 import NewSupplierPopupView from "./addNewSupplierPopup";
+import { suppliers } from "../models/suppliers";
 
 export default class SuppliersView extends JetView {
     config() {
@@ -22,16 +23,23 @@ export default class SuppliersView extends JetView {
 
         const datatable = {
             view: "datatable",
+            data: suppliers,
             columns: [
-                { id: "rank", header: "", width: 50 },
-                { id: "title", header: "Film title", width: 200 },
-                { id: "year", header: "Released", width: 80 },
-                { id: "votes", header: "Votes", width: 100 }
+                { id: "id", header: "", width: 50 },
+                { id: "supplier_name", header: "Supplier name", fillspace: true },
+                { id: "tin", header: "TIN", width: 150 },
+                { id: "surname", header: "Surname", width: 200 },
+                { id: "name", header: "Name", width: 100 },
+                { id: "patronymic", header: "Patronymic", width: 200 },
+                { id: "phone", header: "Phone", width: 200 },
+                { id: "editInformation", header: "", template: "<i class='mdi mdi-lead-pencil'></i>", width: 40 }
             ],
-            data: [
-                { id: 1, title: "The Shawshank Redemption", year: 1994, votes: 678790, rank: 1 },
-                { id: 2, title: "The Godfather", year: 1972, votes: 511495, rank: 2 }
-            ]
+            onClick: {
+                "mdi-lead-pencil": (event, item) => {
+                    const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
+                    this.addNewSupplierPopup.show(supplier);
+                }
+            }
         };
 
         return {

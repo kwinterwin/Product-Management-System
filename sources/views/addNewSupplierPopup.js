@@ -1,4 +1,5 @@
 import { JetView } from "webix-jet";
+import { suppliers } from "../models/suppliers";
 
 export default class NewSupplierPopupView extends JetView {
 	config() {
@@ -22,15 +23,15 @@ export default class NewSupplierPopupView extends JetView {
 			label: _("Basic information of supplier"),
 			body: {
 				rows: [
-					{ view: "text", label: _("Supplier name"), labelWidth: 130 },
+					{ view: "text", label: _("Supplier name"), name: "supplier_name", labelWidth: 130, required: true },
 					{
 						cols: [
-							{ view: "text", label: _("TIN") },
+							{ view: "text", label: _("TIN"), name: "tin", required: true },
 							{ width: 10 },
-							{ view: "text", label: _("Checkpoint"), labelWidth: 100 }
+							{ view: "text", label: _("Checkpoint"), name: "checkpoint", labelWidth: 100, required: true }
 						]
 					},
-					{ view: "textarea", label: _("Address"), height: 100 }
+					{ view: "textarea", label: _("Address"), name: "address", height: 100, required: true }
 				]
 			}
 		};
@@ -42,21 +43,21 @@ export default class NewSupplierPopupView extends JetView {
 				rows: [
 					{
 						cols: [
-							{ view: "text", label: _("Surname") },
+							{ view: "text", label: _("Surname"), name: "surname", required: true },
 							{ width: 5 },
-							{ view: "text", label: _("Name"), labelWidth: 60 },
+							{ view: "text", label: _("Name"), labelWidth: 60, name: "name", required: true },
 							{ width: 5 },
-							{ view: "text", label: _("Patronymic"), labelWidth: 90 }
+							{ view: "text", label: _("Patronymic"), labelWidth: 100, name: "patronymic", required: true }
 						]
 					},
 					{ height: 10 },
 					{
 						cols: [
-							{ view: "text", label: _("Phone"), labelWidth: 60 },
+							{ view: "text", label: _("Phone"), labelWidth: 60, name: "phone", required: true },
 							{ width: 5 },
-							{ view: "text", label: _("E-mail"), labelWidth: 60 },
+							{ view: "text", label: _("E-mail"), labelWidth: 60, name: "email" },
 							{ width: 5 },
-							{ view: "text", label: _("Fax"), labelWidth: 60 }
+							{ view: "text", label: _("Fax"), labelWidth: 60, name: "fax" }
 						]
 					}
 				]
@@ -72,26 +73,37 @@ export default class NewSupplierPopupView extends JetView {
 				rows: [
 					popupToolbar,
 					{
-						rows: [
-							{ height: 10 },
-							commonInformation,
-							{ height: 20 },
-							contactInformation
-						],
-						padding: 10
-					},
-					{
-						cols: [
-							{},
+						view: "form",
+						elements: [
 							{
-								view: "button",
-								value: "Save",
-								type: "form"
+								rows: [
+									{ height: 10 },
+									commonInformation,
+									{ height: 20 },
+									contactInformation
+								]
 							},
-							{}
+							{
+								cols: [
+									{},
+									{
+										view: "button",
+										value: "Save",
+										type: "form",
+										click: () => {
+											const form = this.getRoot().queryView({ view: "form" });
+											if (form.validate()) {
+												const supplier_data = form.getValues();
+												suppliers.add(supplier_data);
+												this.hide();
+											}
+										}
+									},
+									{}
+								]
+							}
 						]
-					},
-					{ height: 10 }
+					}
 				]
 			}
 		};
@@ -99,8 +111,13 @@ export default class NewSupplierPopupView extends JetView {
 		return popup;
 	}
 
-	show() {
+	show(supplier) {
+		const form = this.getRoot().queryView({ view: "form" });
 		this.getRoot().show();
+		form.clear();
+		if (supplier) {
+			form.setValues(supplier);
+		}
 	}
 
 	hide() {
