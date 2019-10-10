@@ -1,3 +1,25 @@
 export default {
-
+    "Product Management System": "Product Management System",
+    "Login": "Login",
+    "Register": "Register",
+    "Password": "Password",
+    "Confirm password": "Confirm password",
+    "Successful registration": "Successful registration",
+    "Passwords do not match!": "Passwords do not match!",
+    "Password can't be empty.": "Password can't be empty.",
+    "This field can't be empty.": "This field can't be empty.",
+    "Login can't be empty.": "Login can't be empty.",
+    "Logout": "Logout",
+    "Suppliers": "Suppliers",
+    "Goods": "Goods",
+    "Reports": "Reports",
+    "Purchase proposals": "Purchase proposals",
+    "Users": "Users",
+    "Settings": "Settings",
+    "Compose a new proposal": "Compose a new proposal",
+    "Product registration": "Product registration",
+    "Product searching": "Product searching",
+    "Goods releasing": "Goods releasing",
+    "Reports making": "Reports making",
+    "Language":"Language"
 };
