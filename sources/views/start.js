@@ -21,7 +21,7 @@ export default class Start extends JetView {
 				{ view: "label", label: _("Product Management System"), align: "left" },
 				{ view: "label", label: "", align: "center", localId: "nameLabel" },
 				{
-					view: "button", label: _("Logout"), width: 100, align: "right", type: "icon", icon: "mdi mdi-logout",
+					view: "button", label: _("Logout"), width: 150, align: "right", type: "icon", icon: "mdi mdi-logout",
 					click: () => {
 						this.show("/logout");
 					}

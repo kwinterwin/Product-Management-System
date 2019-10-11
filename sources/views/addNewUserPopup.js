@@ -1,11 +1,12 @@
 import { JetView } from "webix-jet";
-// import { users } from "../models/users";
+import { users } from "../models/users";
+import { defaultImage } from "../../config";
 
 export default class UserPopupView extends JetView {
 
 	constructor(app, name) {
 		super(app, name);
-		this.defaultImg = "https://i.stack.imgur.com/aLNNU.png";
+		this.defaultImg = defaultImage;
 	}
 
 	config() {
@@ -27,21 +28,33 @@ export default class UserPopupView extends JetView {
 		const userForm = {
 			view: "form",
 			elements: [
-				{ view: "text", label: _("Surname"), name: "surname", labelWidth: 150 },
-				{ view: "text", label: _("Name"), name: "name", labelWidth: 150 },
-				{ view: "text", label: _("Patronymic"), name: "patronymic", labelWidth: 150 },
-				{ view: "datepicker", label: _("Date of birth"), name: "date_of_birth", labelWidth: 150 },
-				{ view: "text", label: _("Phone"), name: "phone", labelWidth: 150, pattern: { mask: "+###-## ###-##-##" } },
-				{ view: "text", label: _("Position"), name: "position", labelWidth: 150 },
-				{ view: "button", value: "Save", inputWidth: 200, align: "right" },
+				{ view: "text", label: _("Surname"), name: "surname", labelWidth: 150, required: true },
+				{ view: "text", label: _("Name"), name: "name", labelWidth: 150, required: true },
+				{ view: "text", label: _("Patronymic"), name: "patronymic", labelWidth: 150, required: true },
+				{ view: "datepicker", label: _("Date of birth"), name: "date_of_birth", labelWidth: 150, required: true },
+				{ view: "text", label: _("Phone"), name: "phone", labelWidth: 150, pattern: { mask: "+###-## ###-##-##" }, required: true },
+				{ view: "text", label: _("Position"), name: "position", labelWidth: 150, required: true },
+				{
+					view: "button", value: "Save", inputWidth: 200, align: "right",
+					click: () => {
+						const form = this.getRoot().queryView({ view: "form" });
+						if (form.validate()) {
+							const user_data = form.getValues();
+							user_data.photo = null;
+							users.add(user_data);
+						}
+					}
+				},
 				{ height: 10 }
 			],
 			borderless: true
 		};
 
 		const avatar_template = {
-			template: `
-                     <div class="avatar-block">
+			view: "template",
+			template: () => {
+				return `
+                        <div class="avatar-block">
                         <div class="avatar">
                             <img src="${this.defaultImg}">
                         </div>
@@ -54,7 +67,8 @@ export default class UserPopupView extends JetView {
                                 </label>
                             </div>
                         </div>
-                    </div>`,
+                    </div>`;
+			},
 			width: 300,
 			height: 300,
 			borderless: true,
@@ -68,6 +82,14 @@ export default class UserPopupView extends JetView {
 
 						$avatarBlock.addEventListener("mouseout", () => {
 							$avatarBlock.querySelector(".avatar-overlay").classList.add("hidden-block");
+						});
+					}
+					const uploadInput = $avatarBlock.querySelector("input");
+					if (uploadInput) {
+						uploadInput.addEventListener("change", (event) => {
+							const file = uploadInput.files[0];
+							// this
+							// this.defaultImg = window.URL.createObjectURL(file);
 						});
 					}
 				}
@@ -100,8 +122,18 @@ export default class UserPopupView extends JetView {
 		return popup;
 	}
 
-	show() {
+	show(user) {
+		const form = this.getRoot().queryView({ view: "form" });
+		this.defaultImg = defaultImage;
 		this.getRoot().show();
+		form.clear();
+		if (user) {
+			form.setValues(user);
+			if (user.photo) {
+				this.defaultImg = user.photo;
+			}
+		}
+		this.getRoot().queryView({ view: "template" }).refresh();
 	}
 
 	hide() {

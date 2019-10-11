@@ -4,9 +4,9 @@ const DBConfig = {
     host: "localhost"
 };
 
-const serverURL = "http://localhost:3000";
+const defaultImage = "https://i.stack.imgur.com/aLNNU.png";
 
 module.exports = {
-    DBConfig, serverURL
+    DBConfig, defaultImage
 
 };

@@ -10,20 +10,15 @@
 	cursor: pointer;
 }
 
-
-
-
-
-
-.movies .webix_dataview_item,
-.movies .webix_dataview_item.webix_selected {
+.users .webix_dataview_item,
+.users .webix_dataview_item.webix_selected {
 	padding         : 3px 2px;
 	border-color    : #fff;
 	background-image: none;
 	background-color: #fff;
 }
 
-.movies .webix_dataview_item.webix_selected .overall {
+.users .webix_dataview_item.webix_selected .overall {
 	background-color: #DBFFB0;
 	background      : -moz-linear-gradient(top, #DBFFB0 0%, #D0F4A4 100%);
 	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #DBFFB0), color-stop(1, #D0F4A4));
@@ -37,7 +32,7 @@
 	border-radius        : 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius   : 8px;
-	height               : 65px;
+	height               : 160px;
 	padding              : 10px;
 	color                : #303030;
 	text-shadow          : 0 1px 0 #FFFFFF;
@@ -48,103 +43,136 @@
 	background           : -moz-linear-gradient(top, #edeff4 0%, #e1e4ea 100%);
 	background           : -webkit-gradient(linear, left top, left bottom, color-stop(0, #edeff4), color-stop(1, #e1e4ea));
 	box-shadow           : 0px 1px 1px #d4d7de;
+	display              : flex;
+	box-sizing           : border-box;
+	position             : relative;
 }
 
-.title {
-	height      : 40px;
-	line-height : 20px;
-	overflow    : hidden;
-	font-weight : bold;
-	float       : left;
-	padding-left: 5px;
-	width       : 200px;
+.overall .avatar {
+	width  : 130px;
+	display: inline-block;
+	height : 130px;
 }
 
-.title_long {
-	height      : 40px;
-	line-height : 20px;
-	overflow    : hidden;
-	font-weight : bold;
-	float       : left;
-	padding-left: 5px;
-	width       : 400px;
+.overall .avatar img {
+	width : 100%;
+	height: 100%;
 }
 
-.year {
-	width     : 210px;
-	text-align: right;
+.overall .user_information {
+	display    : inline-block;
+	margin-left: 40px;
+	position   : relative;
 }
 
+.overall .user_information .snp {
+	font-weight: 600;
+	margin-top : 24px;
+}
 
+.overall .user_information .phone {
+	position: absolute;
+	bottom  : 0;
+}
 
+.overall .user_information .phone span {
+	font-weight: 500;
+}
 
+.overall .mdi{
+	font-size: 20px;
+}
 
-.avatar-block{
+.overall .mdi-lead-pencil {
+	position: absolute;
+	right   : 10px;
+}
+
+.overall .mdi-delete {
+	position: absolute;
+	right   : 10px;
+	bottom  : 10px;
+}
+
+.overall .mdi-delete:hover {
+	cursor: pointer;
+}
+
+.avatar-block {
 	position: relative;
 }
 
 .avatar-overlay .form-group {
-    margin-top: 72px;
+	margin-top: 72px;
 }
 
 .avatar-overlay input[type=file] {
-    outline       : 0;
-    opacity       : 0;
-    pointer-events: none;
-    user-select   : none;
-    margin        : 0;
+	outline       : 0;
+	opacity       : 0;
+	pointer-events: none;
+	user-select   : none;
+	margin        : 0;
 }
 
 .avatar-overlay .label {
-    display   : block;
-    padding   : 7px;
-    transition: border 150ms ease;
-    cursor    : pointer;
-    text-align: center
+	display   : block;
+	padding   : 7px;
+	transition: border 150ms ease;
+	cursor    : pointer;
+	text-align: center
 }
 
 .avatar-overlay .label i {
-    display       : block;
-    font-size     : 76px;
-    padding-bottom: 16px
+	display       : block;
+	font-size     : 76px;
+	padding-bottom: 16px
 }
 
 .avatar-overlay .label span {
-	font-size: 25px;
+	font-size : 25px;
 	text-align: end;
 }
 
 .avatar-overlay .label i,
 .avatar-overlay .label .title {
-    color     : grey;
-    transition: 200ms color
+	color     : grey;
+	transition: 200ms color
 }
 
 .avatar-overlay .label:hover i,
 .avatar-overlay .label:hover .title {
-    color: #000
+	color: #000
 }
 
 
 .avatar-block .avatar-overlay {
-    position        : absolute;
-    width           : 275px;
-    height          : 275px;
-    top             : 0;
-    background-color: rgba(241, 241, 226, 0.4);
-    border          : 1px solid transparent;
-    box-sizing      : border-box;
-    border-radius   : 50%;
+	position        : absolute;
+	width           : 275px;
+	height          : 275px;
+	top             : 0;
+	background-color: rgba(241, 241, 226, 0.4);
+	border          : 1px solid transparent;
+	box-sizing      : border-box;
+	border-radius   : 50%;
+}
+
+.avatar-block,
+.avatar {
+	height: 100%;
 }
 
 .avatar img {
-    width        : 100%;
-    height       : 100%;
-    border       : 1px solid transparent;
-    box-sizing   : border-box;
-    border-radius: 50%;
+	width        : 100%;
+	height       : 100%;
+	border       : 1px solid transparent;
+	box-sizing   : border-box;
+	border-radius: 50%;
 }
 
-.hidden-block{
+.hidden-block {
 	display: none;
+}
+
+.webix_dataview_item:hover {
+	cursor: default;
 }

@@ -102,44 +102,44 @@ let usersData = {
 		// });
 	},
 
-	// getAllUsers(req,res){
-	// 	if (req.query.hasOwnProperty("login")){
-	// 		let query = `select * from users where login='${req.query.login}';`;
-	// 		con.con.query(query, (err, result)=>{
-	// 			if(err){
-	// 				res.status(500).send(err);
-	// 				console.log(err);
-	// 			}
-	// 			else{
-	// 				res.send(result);
-	// 			}
-	// 		});
-	// 	}
-	// 	else if(req.query.hasOwnProperty("all")){
-	// 		let query = `select * from users;`;
-	// 		con.con.query(query, (err, result)=>{
-	// 			if(err){
-	// 				res.status(500).send(err);
-	// 				console.log(err);
-	// 			}
-	// 			else{
-	// 				res.send(result);
-	// 			}
-	// 		});
-	// 	}
-	// 	else {
-	// 		let query = "select * from users where role='user';";
-	// 		con.con.query(query, (err, result)=>{
-	// 			if(err){
-	// 				res.status(500).send(err);
-	// 				console.log(err);
-	// 			}
-	// 			else{
-	// 				res.json(result);
-	// 			}
-	// 		});
-	// 	}	
-	// },
+	getAllUsers(req, res) {
+
+		// if (req.query.hasOwnProperty("login")) {
+		// 	let query = `select * from users where login='${req.query.login}';`;
+		// 	con.con.query(query, (err, result) => {
+		// 		if (err) {
+		// 			res.status(500).send(err);
+		// 			console.log(err);
+		// 		}
+		// 		else {
+		// 			res.send(result);
+		// 		}
+		// 	});
+		// }
+		// else if (req.query.hasOwnProperty("all")) {
+		// 	let query = `select * from users;`;
+		// 	con.con.query(query, (err, result) => {
+		// 		if (err) {
+		// 			res.status(500).send(err);
+		// 			console.log(err);
+		// 		}
+		// 		else {
+		// 			res.send(result);
+		// 		}
+		// 	});
+		// }
+		// else {
+		const query = "SELECT users.*, logindata.* FROM prms.users as users, prms.user_logindata as logindata where users.user_id=logindata.id";
+		con.con.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+			}
+			else {
+				res.json(result);
+			}
+		});
+	},
 
 	// editData(req,res){
 	// 	let query = `update library.users set users_name="${req.body.users_name}", users_surname='${req.body.users_surname}', users_patronymic='${req.body.users_patronymic}', passport='${req.body.passport}', address='${req.body.address}', birthday='${req.body.birthday}',phone='${req.body.phone}' where users_id=${req.body.users_id}`;
@@ -154,22 +154,33 @@ let usersData = {
 	// 	});
 	// },
 
-	// addData(req,res){
-	// 	let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
-	// 	con.con.query(query, (err, result)=>{
-	// 		let card_number = result[0].card_number+1;
-	// 		query = `INSERT INTO library.users (users_name, users_surname, users_patronymic, passport, birthday, address, phone, login, password, role, card_number) VALUES ('${req.body.users_name}', '${req.body.users_surname}', '${req.body.users_patronymic}', '${req.body.passport}', '${req.body.birthday}', '${req.body.address}', '${req.body.phone}', '${req.body.login}', '${req.body.password}', '${req.body.role}', ${card_number});`;
-	// 		con.con.query(query,(err,result)=>{
-	// 			if(err){
-	// 				res.status(500).send(err);
-	// 				console.log(err);
-	// 			}
-	// 			else{
-	// 				res.json(result);
-	// 			}
-	// 		});
-	// 	});
-	// }
+	addData(req, res) {
+		// let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
+		con.con.query(query, (err, result) => {
+			let card_number = result[0].card_number + 1;
+			query = `INSERT INTO prms.users (user_id,surname,name,patronymic,date_of_birth,phone,position,photo) VALUES
+			(
+			<{user_id: }>,
+			<{surname: }>,
+			<{name: }>,
+			<{patronymic: }>,
+			<{date_of_birth: }>,
+			<{phone: }>,
+			<{position: }>,
+			<{photo: }>);
+			`;
+			con.con.query(query, (err, result) => {
+				if (err) {
+					res.status(500).send(err);
+					console.log(err);
+				}
+				else {
+					res.json(result);
+				}
+			});
+		});
+	}
+
 
 	// saveData(req,res){
 	// 	users.findByIdAndUpdate(req.body._id, req.body, function(err, data){

@@ -61,9 +61,9 @@ app.post("/server/login", users.login);
 app.post("/server/login/status", users.loginStatus);
 app.post("/server/logout", users.logout);
 // app.post("/server/login/authorization", users.authorization);
-// app.get("/server/users", users.getAllUsers);
+app.get("/server/users", users.getAllUsers);
 // app.put("/server/users", users.editData);
-// app.post("/server/users", users.addData);
+app.post("/server/users", users.addData);
 
 app.post("/server/suppliers", suppliers.addNewSupplier);
 app.get("/server/suppliers", suppliers.getAllSupliers);
