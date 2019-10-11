@@ -39,7 +39,7 @@ export default class Start extends JetView {
 				{ id: "", value: _("Goods"), icon: "mdi mdi-briefcase" },
 				{ id: "", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
 				{ id: "", value: _("Purchase proposals"), icon: "mdi mdi-book" },
-				{ id: "", value: _("Users"), icon: "mdi mdi-account-group" },
+				{ id: "users", value: _("Users"), icon: "mdi mdi-account-group" },
 				{ id: "settings", value: _("Settings"), icon: "mdi mdi-cogs" }
 			]
 		};
