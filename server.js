@@ -7,6 +7,7 @@ const { DBConfig } = require("./config");
 // const books = require("./server/route/books");
 const users = require("./server/route/users");
 const suppliers = require("./server/route/suppliers");
+const goods = require("./server/route/goods");
 // const orders = require("./server/route/orders");
 // const likes = require("./server/route/likes");
 // const comments = require("./server/route/comments");
@@ -47,12 +48,12 @@ const storage = multer.diskStorage({
 		cb(null, "./uploads/");
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname);
+		cb(null, "img-" + Date.now() + ".jpg");
 	}
 });
 const upload = multer({ storage: storage });
 
-// app.post("/server/books", upload.single("upload"), books.addData);
+app.post("/server/avatar", upload.single("upload"), users.addAvatarFile);
 // app.get("/server/books", books.allFiles);
 // app.delete("/server/books/:id", books.deleteBook);
 // app.put("/server/books/:id", books.updateItem);
@@ -62,11 +63,17 @@ app.post("/server/login/status", users.loginStatus);
 app.post("/server/logout", users.logout);
 // app.post("/server/login/authorization", users.authorization);
 app.get("/server/users", users.getAllUsers);
-// app.put("/server/users", users.editData);
+app.put("/server/users/:id", users.editData);
 app.post("/server/users", users.addData);
+app.delete("/server/users/:id", users.deleteUser);
 
 app.post("/server/suppliers", suppliers.addNewSupplier);
 app.get("/server/suppliers", suppliers.getAllSupliers);
+app.put("/server/suppliers/:id", suppliers.updateSupplier);
+
+app.get("/server/goods_categories", goods.getAllCategories);
+app.post("/server/goods_categories", goods.addCategory);
+app.delete("/server/goods_categories/:id", goods.deleteCategory);
 
 // app.post("/server/orders", orders.addOrder);
 // app.get("/server/orders", orders.getAllData);

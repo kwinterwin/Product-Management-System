@@ -5,38 +5,38 @@ import { defaultImage } from "../../config";
 
 export default class UsersView extends JetView {
 
-    constructor(app, name) {
-        super(app, name);
-        this.defaultImg = defaultImage;
-    }
+	constructor(app, name) {
+		super(app, name);
+		this.defaultImg = defaultImage;
+	}
 
-    config() {
-        const _ = this.app.getService("locale")._;
-        const toolbar = {
-            view: "toolbar",
-            padding: 20,
-            elements: [
-                { view: "icon", icon: "mdi mdi-account-group", css: "mdi-toolbar-icons", width: 70, height: 40 },
-                { view: "label", label: _("Users"), align: "left" },
-                {
-                    view: "button", label: _("Add new user"), width: 250, align: "right", type: "icon", icon: "mdi mdi-account-multiple-plus",
-                    click: () => {
-                        this.addNewUserPopup.show();
-                    }
-                }
-            ],
-            css: "main-layout-toolbar"
-        };
+	config() {
+		const _ = this.app.getService("locale")._;
+		const toolbar = {
+			view: "toolbar",
+			padding: 20,
+			elements: [
+				{ view: "icon", icon: "mdi mdi-account-group", css: "mdi-toolbar-icons", width: 70, height: 40 },
+				{ view: "label", label: _("Users"), align: "left" },
+				{
+					view: "button", label: _("Add new user"), width: 250, align: "right", type: "icon", icon: "mdi mdi-account-multiple-plus",
+					click: () => {
+						this.addNewUserPopup.show();
+					}
+				}
+			],
+			css: "main-layout-toolbar"
+		};
 
-        const dataview = {
-            view: "dataview",
-            select: false,
-            css: "users",
-            type: {
-                width: 400,
-                height: 160,
-                template: (obj) => {
-                    return `
+		const dataview = {
+			view: "dataview",
+			select: false,
+			css: "users",
+			type: {
+				width: 400,
+				height: 160,
+				template: (obj) => {
+					return `
                         <div class='overall'>
                             <span class='mdi mdi-lead-pencil' title="Edit user information"></span>
                             <span class='mdi mdi-delete' title="Delete user"></span>
@@ -50,31 +50,35 @@ export default class UsersView extends JetView {
                                 <div class="phone"><span>Phone:</span> ${obj.phone}</div> 
                             </div>
                         </div>`;
-                }
-            },
-            data: users,
-            onClick: {
-                "mdi-lead-pencil": (event, id) => {
-                    const dataview = this.getRoot().queryView({ view: "dataview" });
-                    this.addNewUserPopup.show(dataview.getItem(id));
-                }
-            }
-        };
+				}
+			},
+			data: users,
+			onClick: {
+				"mdi-lead-pencil": (event, id) => {
+					const dataview = this.getRoot().queryView({ view: "dataview" });
+					this.addNewUserPopup.show(dataview.getItem(id));
+				},
+				"mdi-delete": (event, id) => {
+					const dataview = this.getRoot().queryView({ view: "dataview" });
+					users.remove(dataview.getItem(id).id);
+				}
+			}
+		};
 
-        return {
-            rows: [
-                toolbar,
-                dataview
-            ]
-        };
-    }
+		return {
+			rows: [
+				toolbar,
+				dataview
+			]
+		};
+	}
 
-    formatedDate(date) {
-        const noFormatDate = new Date(Date.parse(date));
-        return `${noFormatDate.getDate()}-${noFormatDate.getMonth() + 1}-${noFormatDate.getFullYear()}`;
-    }
+	formatedDate(date) {
+		const noFormatDate = new Date(Date.parse(date));
+		return `${noFormatDate.getDate()}-${noFormatDate.getMonth() + 1}-${noFormatDate.getFullYear()}`;
+	}
 
-    init() {
-        this.addNewUserPopup = this.ui(UserPopupView);
-    }
+	init() {
+		this.addNewUserPopup = this.ui(UserPopupView);
+	}
 }

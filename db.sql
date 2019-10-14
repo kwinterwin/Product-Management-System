@@ -38,3 +38,32 @@ CREATE TABLE `users` (
   CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `user_logindata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `goods_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) COLLATE utf8_bin NOT NULL,
+  `parent` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Одежда, обувь и аксессуары');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Товары для детей');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Все для дома');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Красота и здоровье');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Бытовая техника');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Компьютеры');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Спортивные товары');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Животные и растения');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Мебель');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Все для офиса');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Строительство и ремонт');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Телефоны');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Авто, мото');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Электроника и фото');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Книги');
+INSERT INTO `prms`.`goods_categories` (`name`) VALUES ('Подарки, сувениры');
+
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Женская одежда', '1');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская одежда', '1');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Женская обувь', '1');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская обувь', '1');
+

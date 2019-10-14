@@ -32,11 +32,11 @@ export default class Start extends JetView {
 		const admin_sidebar = {
 			view: "sidebar",
 			localId: "adminSidebar",
-			width: 300,
+			width: 200,
 			hidden: true,
 			data: [
 				{ id: "suppliers", value: _("Suppliers"), icon: "mdi mdi-car-pickup" },
-				{ id: "", value: _("Goods"), icon: "mdi mdi-briefcase" },
+				{ id: "goods", value: _("Goods"), icon: "mdi mdi-briefcase" },
 				{ id: "", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
 				{ id: "", value: _("Purchase proposals"), icon: "mdi mdi-book" },
 				{ id: "users", value: _("Users"), icon: "mdi mdi-account-group" },

@@ -7,6 +7,7 @@ export default class UserPopupView extends JetView {
 	constructor(app, name) {
 		super(app, name);
 		this.defaultImg = defaultImage;
+		this.photo = null;
 	}
 
 	config() {
@@ -15,7 +16,7 @@ export default class UserPopupView extends JetView {
 		const popupToolbar = {
 			view: "toolbar",
 			elements: [
-				{ view: "label", label: _("Add new user"), align: "left" },
+				{ view: "label", label: _("Add new user"), align: "left", headerLabel: true },
 				{
 					view: "icon", icon: "mdi mdi-close",
 					click: () => {
@@ -34,14 +35,29 @@ export default class UserPopupView extends JetView {
 				{ view: "datepicker", label: _("Date of birth"), name: "date_of_birth", labelWidth: 150, required: true },
 				{ view: "text", label: _("Phone"), name: "phone", labelWidth: 150, pattern: { mask: "+###-## ###-##-##" }, required: true },
 				{ view: "text", label: _("Position"), name: "position", labelWidth: 150, required: true },
+				{ view: "text", label: _("Login"), name: "login", labelWidth: 150, required: true },
+				{ view: "text", label: _("Password"), name: "password", labelWidth: 150, required: true, type: "password", },
 				{
 					view: "button", value: "Save", inputWidth: 200, align: "right",
 					click: () => {
 						const form = this.getRoot().queryView({ view: "form" });
 						if (form.validate()) {
 							const user_data = form.getValues();
-							user_data.photo = null;
-							users.add(user_data);
+							if (this.photo) {
+								const file = this.photo;
+								const formData = new FormData();
+								formData.append("upload", file);
+								webix.ajax().post("/server/avatar", formData).then((data) => {
+									user_data.photo = data.filename;
+									this.defaultImg = `/server/${user_data.photo}`;
+									this.getRoot().queryView({ view: "template" }).refresh();
+									this.manipulationUserInformation(user_data);
+								});
+							}
+							else {
+								user_data.photo = null;
+								this.manipulationUserInformation(user_data);
+							}
 						}
 					}
 				},
@@ -86,10 +102,11 @@ export default class UserPopupView extends JetView {
 					}
 					const uploadInput = $avatarBlock.querySelector("input");
 					if (uploadInput) {
-						uploadInput.addEventListener("change", (event) => {
+						uploadInput.addEventListener("change", () => {
 							const file = uploadInput.files[0];
-							// this
-							// this.defaultImg = window.URL.createObjectURL(file);
+							this.photo = file;
+							this.defaultImg = window.URL.createObjectURL(file);
+							this.getRoot().queryView({ view: "template" }).refresh();
 						});
 					}
 				}
@@ -122,16 +139,35 @@ export default class UserPopupView extends JetView {
 		return popup;
 	}
 
+	manipulationUserInformation(user_data) {
+		if (this.isChange) {
+			users.updateItem(user_data.id, user_data);
+		}
+		else {
+			users.add(user_data);
+		}
+		this.hide();
+	}
+
 	show(user) {
 		const form = this.getRoot().queryView({ view: "form" });
+		const _ = this.app.getService("locale")._;
 		this.defaultImg = defaultImage;
+		this.isChange = false;
+		const saveButton = form.queryView({ view: "button" });
+		const headerLabel = this.getRoot().queryView({ headerLabel: true });
 		this.getRoot().show();
 		form.clear();
+		saveButton.setValue(_("Save"));
+		headerLabel.setValue(_("Add new user"));
 		if (user) {
+			this.isChange = true;
 			form.setValues(user);
 			if (user.photo) {
 				this.defaultImg = user.photo;
 			}
+			saveButton.setValue(_("Change"));
+			headerLabel.setValue(_("Change user information"));
 		}
 		this.getRoot().queryView({ view: "template" }).refresh();
 	}

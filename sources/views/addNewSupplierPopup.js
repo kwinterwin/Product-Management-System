@@ -2,13 +2,20 @@ import { JetView } from "webix-jet";
 import { suppliers } from "../models/suppliers";
 
 export default class NewSupplierPopupView extends JetView {
+
+	constructor(app, name, data) {
+		super(app, name);
+		this.isChange = false;
+		this.supplier = null;
+	}
+
 	config() {
 		const _ = this.app.getService("locale")._;
 
 		const popupToolbar = {
 			view: "toolbar",
 			elements: [
-				{ view: "label", label: _("Add new supplier"), align: "left" },
+				{ view: "label", label: _("Add new supplier"), align: "left", headerLabel: true },
 				{
 					view: "icon", icon: "mdi mdi-close",
 					click: () => {
@@ -94,7 +101,12 @@ export default class NewSupplierPopupView extends JetView {
 											const form = this.getRoot().queryView({ view: "form" });
 											if (form.validate()) {
 												const supplier_data = form.getValues();
-												suppliers.add(supplier_data);
+												if (this.isChange) {
+													suppliers.updateItem(this.supplier.id, supplier_data);
+												}
+												else {
+													suppliers.add(supplier_data);
+												}
 												this.hide();
 											}
 										}
@@ -112,11 +124,21 @@ export default class NewSupplierPopupView extends JetView {
 	}
 
 	show(supplier) {
+		const _ = this.app.getService("locale")._;
+		this.isChange = false;
 		const form = this.getRoot().queryView({ view: "form" });
+		const saveButton = this.getRoot().queryView({ view: "button" });
+		const headerLabel = this.getRoot().queryView({ headerLabel: true });
 		this.getRoot().show();
 		form.clear();
+		saveButton.setValue(_("Save"));
+		headerLabel.setValue(_("Add new supplier"));
 		if (supplier) {
+			this.isChange = true;
 			form.setValues(supplier);
+			this.supplier = supplier;
+			saveButton.setValue(_("Change"));
+			headerLabel.setValue(_("Change supplier information"));
 		}
 	}
 

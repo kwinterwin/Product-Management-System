@@ -141,57 +141,73 @@ let usersData = {
 		});
 	},
 
-	// editData(req,res){
-	// 	let query = `update library.users set users_name="${req.body.users_name}", users_surname='${req.body.users_surname}', users_patronymic='${req.body.users_patronymic}', passport='${req.body.passport}', address='${req.body.address}', birthday='${req.body.birthday}',phone='${req.body.phone}' where users_id=${req.body.users_id}`;
-	// 	con.con.query(query, (err, result)=>{
-	// 		if(err){
-	// 			res.status(500).send(err);
-	// 			console.log(err);
-	// 		}
-	// 		else{
-	// 			res.json(result);
-	// 		}
-	// 	});
-	// },
+	editData(req, res) {
+		const user = req.body;
+		let query = `update prms.user_logindata set login="${user.login}", password='${user.password}' where id=${user.id}`;
+		con.con.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+			}
+			else {
+				query = `update prms.users set surname='${user.surname}', name='${user.name}', patronymic='${user.patronymic}', date_of_birth='${user.date_of_birth}', 
+				phone='${user.phone}', position = '${user.position}', photo = '${user.photo}' where info_id=${user.info_id}`;
+				con.con.query(query, (err, result) => {
+					if (err) {
+						res.status(500).send(err);
+						console.log(err);
+					}
+					else {
+						res.json(result);
+					}
+				});
+			}
+		});
+	},
 
 	addData(req, res) {
-		// let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
+		const user = req.body;
+		let query = `INSERT INTO prms.user_logindata (login, password) VALUES ('${user.login}', '${user.password}')`;
 		con.con.query(query, (err, result) => {
-			let card_number = result[0].card_number + 1;
-			query = `INSERT INTO prms.users (user_id,surname,name,patronymic,date_of_birth,phone,position,photo) VALUES
-			(
-			<{user_id: }>,
-			<{surname: }>,
-			<{name: }>,
-			<{patronymic: }>,
-			<{date_of_birth: }>,
-			<{phone: }>,
-			<{position: }>,
-			<{photo: }>);
-			`;
-			con.con.query(query, (err, result) => {
-				if (err) {
-					res.status(500).send(err);
-					console.log(err);
-				}
-				else {
-					res.json(result);
-				}
-			});
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+			}
+			else {
+				query = `INSERT INTO prms.users (user_id, surname, name, patronymic, date_of_birth, phone, position, photo) VALUES
+											(${result.insertId},'${user.surname}','${user.name}', '${user.patronymic}', '${user.date_of_birth}', '${user.phone}', '${user.position}',
+											'${user.photo}')`;
+				con.con.query(query, (err, result) => {
+					if (err) {
+						res.status(500).send(err);
+						console.log(err);
+					}
+					else {
+						res.json(result);
+					}
+				});
+			}
+		});
+	},
+
+	addAvatarFile(req, res) {
+		const file = req.file;
+		res.json(file);
+	},
+
+	deleteUser(req, res) {
+		const user_id = req.params.id;
+		const query = `delete from prms.user_logindata where id=${user_id}`;
+		con.con.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+			}
+			else {
+				res.json(result);
+			}
 		});
 	}
-
-
-	// saveData(req,res){
-	// 	users.findByIdAndUpdate(req.body._id, req.body, function(err, data){
-	// 		if(err){
-	// 			console.log(err);
-	// 			res.status(500).send(err);
-	// 		}
-	// 		else{
-	// 			res.json(data);
-	// 		}
-	// 	});
-	// }
 };
+
 module.exports = usersData;
