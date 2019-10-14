@@ -50,7 +50,7 @@ export default class Start extends JetView {
 			localId: "userSidebar",
 			data: [
 				{ id: "", value: _("Compose a new proposal") },
-				{ id: "", value: _("Product registration") },
+				{ id: "productRegistration", value: _("Product registration") },
 				{ id: "", value: _("Product searching") },
 				{ id: "", value: _("Goods releasing") },
 				{ id: "", value: _("Reports making") }
