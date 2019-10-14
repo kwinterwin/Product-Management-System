@@ -69,8 +69,20 @@ let goodsData = {
                 res.json(result);
             }
         });
+    },
+
+    getGood(req, res) {
+        const id = req.params.id;
+        const query = `select * from prms.goods where category=${id}`;
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
     }
-
-
 };
 module.exports = goodsData;
