@@ -19,7 +19,7 @@ CREATE TABLE `user_logindata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(45) COLLATE utf8_bin NOT NULL,
   `password` varchar(45) COLLATE utf8_bin NOT NULL,
-  `role` varchar(10) COLLATE utf8_bin NOT NULL DEFAULT '"user"',
+  `role` varchar(10) COLLATE utf8_bin NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
