@@ -74,6 +74,9 @@ app.put("/server/suppliers/:id", suppliers.updateSupplier);
 app.get("/server/goods_categories", goods.getAllCategories);
 app.post("/server/goods_categories", goods.addCategory);
 app.delete("/server/goods_categories/:id", goods.deleteCategory);
+app.post("/server/goods", goods.addGood);
+app.get("/server/goods", goods.getAllGoods);
+app.get("/server/goods/:id", goods.getGood);
 
 // app.post("/server/orders", orders.addOrder);
 // app.get("/server/orders", orders.getAllData);

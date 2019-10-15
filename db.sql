@@ -23,6 +23,9 @@ CREATE TABLE `user_logindata` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+INSERT INTO `prms`.`user_logindata` (`login`, `password`, `role`) VALUES ('admin', 'admin', 'admin');
+INSERT INTO `prms`.`user_logindata` (`login`, `password`, `role`) VALUES ('user', 'user', 'user');
+
 CREATE TABLE `users` (
   `info_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -37,6 +40,9 @@ CREATE TABLE `users` (
   KEY `user_id_key_idx` (`user_id`),
   CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `user_logindata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `prms`.`users` (`user_id`, `surname`, `name`, `patronymic`, `date_of_birth`, `phone`, `position`) VALUES ('1', 'Adminov', 'Admin', 'Adminovich', '2018-05-05', '375297226164', 'admin');
+INSERT INTO `prms`.`users` (`user_id`, `surname`, `name`, `patronymic`, `date_of_birth`, `phone`, `position`) VALUES ('2', 'Userov', 'User', 'Userovich', '2016-05-05', '375298696969', 'user');
 
 CREATE TABLE `goods_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,3 +73,25 @@ INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская
 INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Женская обувь', '1');
 INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская обувь', '1');
 
+
+
+
+
+
+
+CREATE TABLE `prms`.`goods` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `price` INT NOT NULL,
+  `manuf_country` VARCHAR(55) NOT NULL,
+  `articul` VARCHAR(45) NOT NULL,
+  `category` INT NOT NULL,
+  `barcode` VARCHAR(45) NOT NULL,
+  `brand` VARCHAR(50) NOT NULL,
+  `count` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `categories_id`
+    FOREIGN KEY (`id`)
+    REFERENCES `prms`.`goods_categories` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
