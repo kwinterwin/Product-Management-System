@@ -39,9 +39,9 @@ export default class ProductsByCategoriesView extends JetView {
             hidden: true,
             columns: [
                 { id: "name", header: _("Product name"), fillspace: true },
-                { id: "manuf_country", header: _("Сountry of production"), width: 150 },
-                { id: "price", header: _("Price"), width: 100 },
-                { id: "count", header: _("Count"), width: 100 }
+                { id: "manuf_country", header: _("Сountry of production"), adjust:true },
+                { id: "price", header: _("Price"), adjust:true },
+                { id: "count", header: _("Count"), adjust:true }
                 // { id: "editInformation", header: "", template: "<i class='mdi mdi-lead-pencil'></i>", width: 40 }
             ]
         };

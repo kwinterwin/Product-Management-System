@@ -1,40 +1,35 @@
-Webix UI v.5.2.4
+Webix UI v.7.0.2
 ================
 
-http://webix.com
+https://webix.com
 
 If you don't know where to start - check 
 
-- http://webix.com/quick-start/#!/1
-- http://docs.webix.com/desktop__getting_started.html
-- http://forum.webix.com
-
+- https://webix.com/quick-start/#!/1
+- https://docs.webix.com/
+- https://forum.webix.com
 
 
 ### License terms
 
-Webix UI is licensed under Webix Student License, check license.txt for more details
+Webix UI library is licensed under Webix Trial Developer License Agreement
+Check - Webix Trial Developer License Agreement file in this archive
 
 ** What does it means in human terms **
 
-- You can use this package for education purposes only
-
-
-### Updating the component
-
-To get the latest version of the component, you can login 
-into the client's area at http://webix.com/clients/
-
-There you can download the latest package, or register as a Webix developer
-and get npm access to the latest and all further versions of the package.  
+- This version is for evaluation purposes only
+- Evaluation period is 30 days
+- You cannot continue using this beyond that period (30 days)
 
 
 
-### Support
+### Commercial license and Support
+
+You can buy commercial license and support subscription at https://webix.com/licenses/
 
 If you have questions about functionality of the component 
 or have some issue with API and behavior of the component,
 please contact us at support@webix.com
 
 
-(c) XB Software Ltd. 2017
+(c) XB Software Ltd. 2019

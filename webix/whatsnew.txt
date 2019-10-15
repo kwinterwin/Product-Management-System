@@ -1,3 +1,133 @@
+Version 7.0.2 (October 2019)
+==============================
+
+### Fixes
+
+- closing active tab in tabbar result in error
+- rendering issues with center and right align of the combo
+- regression in horizontal scroll of the tree
+- incorrect width of multicombo in some cases
+
+
+Version 7.0.1 (September 2019)
+==============================
+
+### Fixes
+
+- regression in drag files on uploader button
+- incorrect processing of text drop on uploader area
+
+
+Version 7.0.0 (September 2019)
+==============================
+
+### Major features
+
+- [Visual designer tool](https://designer.webix.com)
+- Timeline widget
+- Mention suggest widget
+- Ability to hide/disable options and items across widgets
+
+[Full list of changes and fixes](https://docs.webix.com/desktop__whats_new_7_0.html)
+
+
+Version 6.4 (June 2019)
+==================
+
+### Major features
+
+- .Net Core demos for major widgets
+- AWS S3 backend for FileManager widget
+
+### Minor features
+
+- wjet cli tool update
+- monthHeader property in the Calendar widget
+- drag scroll during column drag-n-drop in the Datatable
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_6_4.html)
+
+
+Version 6.3 (April 2019)
+==================
+
+### Major features
+
+- Updated styling for buttons
+- Optional fullscreen mode for all widgets
+- Compatibility with SalesForce
+- Promises for data saving operations
+- Close buttons for Window widget
+
+### Minor features
+
+- Extended grouping functionality
+- Unified API for Datatable column options
+- Mentions in Comments widget
+- Drag-n-drop events for dashboard
+- Ability to style modal boxes
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_6_3.html)
+
+Version 6.2 (February 2019)
+==================
+
+### Major features
+
+- Tooltips are available for all widgets
+- Ability to export charts and images to PDF
+- Improved drag-n-drop
+- webix.proxy, webix.alert and webix.confirm work with promises
+- NodeJs backend for Spreadsheet and FileManager
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_6_2.html)
+
+Version 6.1 (November 2018)
+==================
+
+### Major features
+
+- Comments widget
+- Major update for Kanban widget
+- Full support of skins for all complex widgets
+- NodeJs backend for package samples
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_6_1.html)
+
+Version 6.0 (October 2018)
+==================
+
+### Major features
+
+- New Material skin and its compact version
+- ES6-based toolchain for code building
+- Possibility to create a custom Webix build with necessary widgets both in GPL and PRO versions
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_6_0.html)
+
+Version 5.4 (June 2018)
+==================
+
+### Major features
+
+- GraphQL support
+- Ability to draw various graphs in the Scatter Chart (points, lines, shapes)
+- Handy interface for working with number formats in SpreadSheet
+- WJet utility for faster prototyping with Webix Jet
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_5_4.html)
+
+Version 5.3 (April 2018)
+=================
+
+### Major features
+
+- Multiple updates and improvements in Webix SpreadSheet
+- Enhanced compatibility of Jet views with Webix widgets
+- Ability to select custom icon packs for stylesheets
+
+[Full list of changes and fixes](http://docs.webix.com/desktop__whats_new_5_3.html)
+
 Version 5.2 (February 2018)
 =================
 
