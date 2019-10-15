@@ -176,3 +176,7 @@
 .webix_dataview_item:hover {
 	cursor: default;
 }
+
+.mdi-eye:hover{
+	cursor: pointer;
+}
