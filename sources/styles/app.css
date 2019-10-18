@@ -180,3 +180,10 @@
 .mdi-eye:hover{
 	cursor: pointer;
 }
+
+.boxy .webix_template{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
