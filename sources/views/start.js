@@ -49,11 +49,12 @@ export default class Start extends JetView {
 			hidden: true,
 			localId: "userSidebar",
 			data: [
-				{ id: "", value: _("Compose a new proposal") },
-				{ id: "productRegistration", value: _("Product registration") },
-				{ id: "", value: _("Product searching") },
-				{ id: "", value: _("Goods releasing") },
-				{ id: "", value: _("Reports making") }
+				{ id: "composeNewProposal", value: _("Compose a new proposal"), icon: "mdi mdi-ballot" },
+				{ id: "productRegistration", value: _("Product registration"), icon: "mdi mdi-cart-plus" },
+				{ id: "", value: _("Product searching"), icon: "mdi mdi-search-web" },
+				{ id: "", value: _("Goods releasing"), icon: "mdi mdi-truck" },
+				{ id: "", value: _("Reports making"), icon: "mdi mdi-file-document" },
+				{ id: "settings", value: _("Settings"), icon: "mdi mdi-cogs" }
 			]
 		};
 

@@ -6,21 +6,22 @@ export default class LoginView extends JetView {
 		const _ = this.app.getService("locale")._;
 		const login_toolbar = {
 			view: "toolbar",
-			margin: -20,
+			// margin: -20,
 			paddingX: 70,
 			css: "grayToolbar",
 			cols: [
 				{ view: "label", label: _("Product Management System"), align: "left" },
 				{
-					view: "button", label: _("Login"), width: 100, align: "right", type: "icon", click: () => {
+					view: "button", label: _("Login"), width: 150, inputWidth: 150, align: "right", click: () => {
 						if (this.$$("loginForm").isVisible() === false) {
 							this.$$("loginForm").show();
 							this.$$("registerForm").hide();
 						}
 					}
 				},
+				{ width: 15 },
 				{
-					view: "button", label: _("Register"), width: 100, align: "right", type: "icon", click: () => {
+					view: "button", label: _("Register"), width: 200, inputWidth: 200, align: "right", click: () => {
 						if (this.$$("registerForm").isVisible() === false) {
 							this.$$("loginForm").hide();
 							this.$$("registerForm").show();

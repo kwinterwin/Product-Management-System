@@ -58,7 +58,7 @@ let usersData = {
 			}
 			if (result.length == 1) {
 				user.role = result[0].role;
-				user.users_id = result[0].users_id;
+				user.user_id = result[0].id;
 				req.session.user = user;
 				res.send(user);
 			}
