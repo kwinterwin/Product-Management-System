@@ -41,7 +41,7 @@ export default class UsersView extends JetView {
                             <span class='mdi mdi-lead-pencil' title="Edit user information"></span>
                             <span class='mdi mdi-delete' title="Delete user"></span>
                             <div class="avatar">
-                                <img src="${obj.photo ? obj.photo : this.defaultImg}">
+                                <img src="${obj.photo ? "/server/" + obj.photo : this.defaultImg}">
                             </div>
                             <div class="user_information">
                                 <div class='snp'>${obj.surname} ${obj.name} ${obj.patronymic}</div>

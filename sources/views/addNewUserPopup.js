@@ -48,7 +48,7 @@ export default class UserPopupView extends JetView {
 								const formData = new FormData();
 								formData.append("upload", file);
 								webix.ajax().post("/server/avatar", formData).then((data) => {
-									user_data.photo = data.filename;
+									user_data.photo = data.json().filename;
 									this.defaultImg = `/server/${user_data.photo}`;
 									this.getRoot().queryView({ view: "template" }).refresh();
 									this.manipulationUserInformation(user_data);
@@ -164,7 +164,7 @@ export default class UserPopupView extends JetView {
 			this.isChange = true;
 			form.setValues(user);
 			if (user.photo) {
-				this.defaultImg = user.photo;
+				this.defaultImg = "/server/" + user.photo;
 			}
 			saveButton.setValue(_("Change"));
 			headerLabel.setValue(_("Change user information"));

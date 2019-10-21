@@ -2,15 +2,10 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const session = require("express-session");
 const mysql = require("mysql");
-// import { DBConfig } from "./config";
 const { DBConfig } = require("./config");
-// const books = require("./server/route/books");
 const users = require("./server/route/users");
 const suppliers = require("./server/route/suppliers");
 const goods = require("./server/route/goods");
-// const orders = require("./server/route/orders");
-// const likes = require("./server/route/likes");
-// const comments = require("./server/route/comments");
 const multer = require("multer");
 const app = express();
 
