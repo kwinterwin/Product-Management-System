@@ -14,22 +14,7 @@ export default class PurchaseProposalsView extends JetView {
                 width: 400,
                 height: 220,
                 template: (obj) => {
-                    if (obj.status === "unreviewed")
-                        return `
-                        <div class='overall proposals'>
-                           <div>
-                                <p>Name: ${obj.name}</p>
-                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
-                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
-                                <p>Count: ${obj.count}</p>
-                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
-                           </div>
-                           <div class="proposal-button-section">
-                                <section><i class="mdi mdi-close" title="Rejected proposal"></i></section>
-                                <section><i class="mdi mdi-check" title="Accepted proposal"></i></section>
-                           </div>
-                        </div>`;
-                    else if (obj.status === "accepted")
+                    if (obj.status === "accepted")
                         return `
                         <div class='overall proposals accepted'>
                            <div>
@@ -58,6 +43,22 @@ export default class PurchaseProposalsView extends JetView {
                                 <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
                            </div>
                         </div>`;
+                    else (obj.status === "unreviewed")
+                    return `
+                        <div class='overall proposals'>
+                           <div>
+                                <p>Name: ${obj.name}</p>
+                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>Count: ${obj.count}</p>
+                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                           </div>
+                           <div class="proposal-button-section">
+                                <section><i class="mdi mdi-close" title="Rejected proposal"></i></section>
+                                <section><i class="mdi mdi-check" title="Accepted proposal"></i></section>
+                           </div>
+                        </div>`;
+
                 }
             },
             data: proposals,
