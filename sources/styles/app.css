@@ -32,7 +32,7 @@
 	border-radius        : 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius   : 8px;
-	height               : 160px;
+	height               : 220px;
 	padding              : 10px;
 	color                : #303030;
 	text-shadow          : 0 1px 0 #FFFFFF;
@@ -46,6 +46,80 @@
 	display              : flex;
 	box-sizing           : border-box;
 	position             : relative;
+}
+
+.overall.proposals.rejected {
+	background-color: #ff5858;
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff5858), color-stop(1, #e1e4ea));
+	background      : -o-linear-gradient(top, #ff5858 0%, #e1e4ea 100%);
+	background      : -ms-linear-gradient(top, #ff5858 0%, #e1e4ea 100%);
+	background      : -moz-linear-gradient(top, #ff5858 0%, #e1e4ea 100%);
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff5858), color-stop(1, #e1e4ea));
+	box-shadow      : 0px 1px 1px #d4d7de;
+	color           : white;
+}
+
+.overall.proposals.accepted {
+	background-color: #2ebb51;
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #2ebb51), color-stop(1, #2ebb51));
+	background      : -o-linear-gradient(top, #2ebb51 0%, #e1e4ea 100%);
+	background      : -ms-linear-gradient(top, #2ebb51 0%, #e1e4ea 100%);
+	background      : -moz-linear-gradient(top, #2ebb51 0%, #e1e4ea 100%);
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #2ebb51), color-stop(1, #2ebb51));
+	box-shadow      : 0px 1px 1px #d4d7de;
+	color           : white;
+}
+
+.mdi-autorenew {
+	color: darkgrey;
+}
+
+.overall .proposal-button-section {
+	display        : flex;
+	justify-content: flex-end;
+	margin-top     : 10px;
+}
+
+.overall .proposal-button-section section {
+	height          : 40px;
+	background-color: white;
+	border          : 1px solid darkgrey;
+	border-radius   : 50%;
+	flex-basis      : 40px;
+	margin-right    : 10px;
+	text-align      : center;
+	padding-top     : 6px;
+	box-sizing      : border-box;
+
+}
+
+.overall .proposal-button-section section:hover {
+	cursor: pointer;
+}
+
+.proposal-button-section section i {
+	font-size: 25px !important;
+}
+
+.overall.proposals {
+	flex-direction : column;
+	justify-content: space-between;
+}
+
+.mdi-close {
+	color: red;
+}
+
+.mdi-check {
+	color: green;
+}
+
+.overall.proposals>div {
+	/* flex-basis: 100%; */
+}
+
+.overall.proposals p {
+	margin: 0;
 }
 
 .overall .avatar {
@@ -79,7 +153,7 @@
 	font-weight: 500;
 }
 
-.overall .mdi{
+.overall .mdi {
 	font-size: 20px;
 }
 
@@ -177,13 +251,13 @@
 	cursor: default;
 }
 
-.mdi-eye:hover{
+.mdi-eye:hover {
 	cursor: pointer;
 }
 
-.boxy .webix_template{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-  }
+.boxy .webix_template {
+	display        : flex;
+	justify-content: center;
+	flex-direction : column;
+	text-align     : center;
+}

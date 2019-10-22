@@ -42,7 +42,7 @@ export default class ComposeNewProposalView extends JetView {
 					options: {
 						body: {
 							data: suppliers,
-							template: "#name#"
+							template: "#supplier_name#"
 						}
 					}, required: true
 				},
@@ -52,9 +52,11 @@ export default class ComposeNewProposalView extends JetView {
 						const form = this.getRoot().queryView({ view: "form" });
 						if (form.validate()) {
 							const values = form.getValues();
-							values.date_registration = Date.now();
+							values.date_registration = new Date();
 							values.user_id = user.getUser().user_id;
 							proposals.add(values);
+							form.clear();
+							webix.message({type:"success", text:"Proposal was successfully registrated. Please, wait approvement from admin."});
 						}
 					}
 				},

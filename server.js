@@ -72,9 +72,9 @@ app.post("/server/goods", goods.addGood);
 app.get("/server/goods", goods.getAllGoods);
 app.get("/server/goods/:id", goods.getGood);
 
-app.post("/server/proposals", proposals.addOrder);
-app.get("/server/proposals", proposals.getAllData);
-app.delete("/server/proposals", proposals.deleteData);
+app.post("/server/proposals", proposals.addProposal);
+app.get("/server/proposals", proposals.getAllProposals);
+app.put("/server/proposals/:id", proposals.updateProposal);
 
 // app.get("/server/likes", likes.getData);
 // app.post("/server/likes", likes.setData);

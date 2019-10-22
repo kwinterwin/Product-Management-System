@@ -2,21 +2,8 @@ const con = require("../../server");
 
 let proposalsData = {
 
-    // getAllCategories(req, res) {
-    //     const query = "select * from prms.goods_categories";
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // },
-
-    addProposal(req, res) {
-        const query = `insert into prms.proposals (name, parent) values ('${req.body.name}', ${req.body.parent})`;
+    getAllProposals(req, res) {
+        const query = "select * from prms.proposals";
         con.con.query(query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
@@ -27,6 +14,41 @@ let proposalsData = {
             }
         });
     },
+
+    addProposal(req, res) {
+        const proposal = req.body;
+        const query = `INSERT INTO prms.proposals (name, user_id, category_id, count, supplier_id, date_registration) VALUES
+                        ("${proposal.name}", ${proposal.user_id},${proposal.category_id}, ${proposal.count}, 
+                        ${proposal.supplier_id}, "${proposal.date_registration}");
+                        `;
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
+    updateProposal(req, res) {
+        const proposal = req.body;
+        const query = `Update prms.proposals set name = "${proposal.name}", user_id = ${proposal.user_id}, category_id = ${proposal.category_id}, 
+                            count = ${proposal.count}, supplier_id = ${proposal.supplier_id}, date_registration = "${proposal.date_registration}",
+                            status = "${proposal.status}", date_approve = "${proposal.date_approve}"
+                            where id = ${proposal.id}
+                        `;
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
+    }
 
     // deleteCategory(req, res) {
     //     const id = req.params.id;

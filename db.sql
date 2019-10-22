@@ -164,3 +164,17 @@ CREATE TABLE `prms`.`proposals` (
     REFERENCES `prms`.`suppliers` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+
+ALTER TABLE `prms`.`proposals` 
+ADD COLUMN `status` VARCHAR(45) NULL AFTER `date_completed`;
+
+
+ALTER TABLE `prms`.`proposals` 
+CHANGE COLUMN `status` `status` VARCHAR(45) NULL DEFAULT 'unreviewed' ;
+
+
+ALTER TABLE `prms`.`proposals` 
+CHANGE COLUMN `date_registration` `date_registration` DATETIME NOT NULL ,
+CHANGE COLUMN `date_approve` `date_approve` DATETIME NULL DEFAULT NULL ,
+CHANGE COLUMN `date_completed` `date_completed` DATETIME NULL DEFAULT NULL ;
