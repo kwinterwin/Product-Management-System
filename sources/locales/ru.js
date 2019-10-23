@@ -21,5 +21,6 @@ export default {
     "Product searching": "Поиск товара",
     "Goods releasing": "Списывание товара",
     "Reports making": "Составление отчета",
-    "Language": "Язык"
+    "Language": "Язык",
+    "Edit personal information": "Редактирование персональных данных"
 };
