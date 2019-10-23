@@ -77,29 +77,23 @@ let usersData = {
 	},
 
 	authorization: function (req, res) {
-		// let query = "SELECT card_number FROM users ORDER BY users_id DESC LIMIT 1";
-		// con.con.query(query, (err, result) => {
-		// 	let card_number = result[0].card_number + 1;
-		// 	query = `select * from users where login='${req.body.login}'`;
-		// 	con.con.query(query, (err, result) => {
-		// 		if (err) {
-		// 			res.status(500).send(err);
-		// 			console.log(err);
-		// 		}
-		// 		if (result.length == 0) {
-		// 			query = `INSERT INTO library.users (login, password, role, card_number) VALUES ("${req.body.login}", "${req.body.password}", "${req.body.role}", '${card_number}');`;
-		// 			con.con.query(query, (err) => {
-		// 				if (err) {
-		// 					res.status(500).send(err);
-		// 					console.log(err);
-		// 				}
-		// 				else
-		// 					res.json({});
-		// 			});
-		// 		}
-		// 		else res.json({ "message": "Login has already been taken." });
-		// 	});
-		// });
+		let query = "SELECT * FROM prms.user_logindata where login=" + req.body.login;
+		con.con.query(query, (err, result) => {
+			// console.log(result);
+			if (!result || result.length !== 0) {
+				query = `INSERT INTO prms.user_logindata (login, password) 
+						VALUES ("${req.body.login}", "${req.body.password}");`;
+				con.con.query(query, (err) => {
+					if (err) {
+						res.status(500).send(err);
+						console.log(err);
+					}
+					else
+						res.json({});
+				});
+			}
+			else res.json({ "message": "Login has already been taken." });
+		});
 	},
 
 	getAllUsers(req, res) {

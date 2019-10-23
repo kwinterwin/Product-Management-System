@@ -1,6 +1,6 @@
 const DBConfig = {
     user: "root",
-    password: "Ss19710111",
+    password: "1997anna",
     host: "localhost"
 };
 

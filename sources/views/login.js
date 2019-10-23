@@ -6,7 +6,6 @@ export default class LoginView extends JetView {
 		const _ = this.app.getService("locale")._;
 		const login_toolbar = {
 			view: "toolbar",
-			// margin: -20,
 			paddingX: 70,
 			css: "grayToolbar",
 			cols: [
@@ -111,7 +110,7 @@ export default class LoginView extends JetView {
 						webix.message({ type: "error", text: result.json().message });
 					}
 					else {
-						webix.message({ type: "debug", text: _("Successful registration") });
+						webix.message({ type: "success", text: _("Successful registration") });
 						this.$$("registerForm").clear();
 						this.$$("registerForm").hide();
 						this.$$("loginForm").show();
