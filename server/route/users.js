@@ -20,7 +20,7 @@ let usersData = {
 				res.send(user);
 			}
 			else
-				res.send(null);
+				res.json({ type: "error", "message": "You enter incorrect login or password" });
 		});
 	},
 
