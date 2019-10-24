@@ -54,9 +54,10 @@ export default class ComposeNewProposalView extends JetView {
 							const values = form.getValues();
 							values.date_registration = new Date();
 							values.user_id = user.getUser().user_id;
+							values.status = "unreviewed";
 							proposals.add(values);
 							form.clear();
-							webix.message({type:"success", text:"Proposal was successfully registrated. Please, wait approvement from admin."});
+							webix.message({ type: "success", text: "Proposal was successfully registrated. Please, wait approvement from admin." });
 						}
 					}
 				},

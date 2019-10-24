@@ -59,7 +59,7 @@
 	color           : white;
 }
 
-.overall.proposals.accepted {
+.overall.proposals.completed {
 	background-color: #2ebb51;
 	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #2ebb51), color-stop(1, #2ebb51));
 	background      : -o-linear-gradient(top, #2ebb51 0%, #e1e4ea 100%);
@@ -70,8 +70,23 @@
 	color           : white;
 }
 
+.overall.proposals.accepted {
+	background-color: #45ecf1;
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #45ecf1), color-stop(1, #45ecf1));
+	background      : -o-linear-gradient(top, #45ecf1 0%, #e1e4ea 100%);
+	background      : -ms-linear-gradient(top, #45ecf1 0%, #e1e4ea 100%);
+	background      : -moz-linear-gradient(top, #45ecf1 0%, #e1e4ea 100%);
+	background      : -webkit-gradient(linear, left top, left bottom, color-stop(0, #45ecf1), color-stop(1, #45ecf1));
+	box-shadow      : 0px 1px 1px #d4d7de;
+	color           : white;
+}
+
 .mdi-autorenew {
 	color: darkgrey;
+}
+
+.mdi-check-all {
+	color: green;
 }
 
 .overall .proposal-button-section {
@@ -104,7 +119,7 @@
 .overall.proposals {
 	flex-direction : column;
 	justify-content: space-between;
-	height         : 220px;
+	height         : 240px;
 }
 
 .mdi-close {
@@ -264,10 +279,10 @@
 }
 
 .supplierInformation p {
-	margin: 0;
+	margin       : 0;
 	margin-bottom: 5px;
 }
 
-.supplierInformation h3{
-	font-size:15px;
+.supplierInformation h3 {
+	font-size: 15px;
 }

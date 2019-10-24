@@ -6,6 +6,7 @@ export default class UserSettingsView extends JetView {
     config() {
         const _ = this.app.getService("locale")._;
         const lang = this.app.getService("locale").getLang();
+
         const localization = {
             name: "lang", optionWidth: 120, view: "segmented", label: _("Language"), options: [
                 { id: "en", value: "English" },
@@ -39,7 +40,15 @@ export default class UserSettingsView extends JetView {
 
     init() {
         this.userPopup = this.ui(UserPopupView);
+        const user = this.app.getService("user").getUser();
+        if (user.firstly) {
+            webix.alert({
+                title: "Attention",
+                ok: "OK",
+                text: "To continue working with the application, please fill out the form with personal data."
+            }).then(() => {
+                this.userPopup.show(user, user.firstly);
+            });
+        }
     }
-
-
 }

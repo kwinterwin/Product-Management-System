@@ -41,6 +41,7 @@ export default class UserPopupView extends JetView {
 					view: "button", value: "Save", inputWidth: 200, align: "right",
 					click: () => {
 						const form = this.getRoot().queryView({ view: "form" });
+						debugger
 						if (form.validate()) {
 							const user_data = form.getValues();
 							if (this.photo) {
@@ -63,7 +64,21 @@ export default class UserPopupView extends JetView {
 				},
 				{ height: 10 }
 			],
-			borderless: true
+			borderless: true,
+			rules: {
+				"surname": function (value) {
+					return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+				},
+				"name": function (value) {
+					return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+				},
+				"patronymic": function (value) {
+					return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+				},
+				"phone": function (value) {
+					return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(value);
+				}
+			}
 		};
 
 		const avatar_template = {
@@ -116,6 +131,7 @@ export default class UserPopupView extends JetView {
 		const popup = {
 			view: "popup",
 			width: 800,
+			css: "user-added-popup",
 			modal: true,
 			position: "center",
 			body: {
@@ -149,25 +165,34 @@ export default class UserPopupView extends JetView {
 		this.hide();
 	}
 
-	show(user) {
+	show(user, isNewUser) {
 		const form = this.getRoot().queryView({ view: "form" });
 		const _ = this.app.getService("locale")._;
 		this.defaultImg = defaultImage;
 		this.isChange = false;
 		const saveButton = form.queryView({ view: "button" });
 		const headerLabel = this.getRoot().queryView({ headerLabel: true });
+		const timesIcon = this.getRoot().queryView({ icon: "mdi mdi-close" });
+		timesIcon.show();
 		this.getRoot().show();
 		form.clear();
 		saveButton.setValue(_("Save"));
 		headerLabel.setValue(_("Add new user"));
 		if (user) {
+			user.date_of_birth = new Date(Date.parse(user.date_of_birth));
 			this.isChange = true;
+			if (isNewUser) {
+				this.isChange = false;
+			}
 			form.setValues(user);
 			if (user.photo) {
 				this.defaultImg = "/server/" + user.photo;
 			}
 			saveButton.setValue(_("Change"));
 			headerLabel.setValue(_("Change user information"));
+		}
+		if (isNewUser) {
+			timesIcon.hide();
 		}
 		this.getRoot().queryView({ view: "template" }).refresh();
 	}

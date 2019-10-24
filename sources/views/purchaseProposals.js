@@ -12,7 +12,7 @@ export default class PurchaseProposalsView extends JetView {
             css: "users",
             type: {
                 width: 400,
-                height: 220,
+                height: 240,
                 template: (obj) => {
                     if (obj.status === "accepted")
                         return `
@@ -27,6 +27,7 @@ export default class PurchaseProposalsView extends JetView {
                            </div>
                            <div class="proposal-button-section">
                                 <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
+                                <section><i class="mdi mdi-check-all" title="Send to unreviewed proposals"></i></section>
                            </div>
                         </div>`;
                     else if (obj.status === "rejected")
@@ -43,8 +44,20 @@ export default class PurchaseProposalsView extends JetView {
                                 <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
                            </div>
                         </div>`;
-                    else (obj.status === "unreviewed")
-                    return `
+                    else if (obj.status === "completed")
+                        return `
+                        <div class='overall proposals completed'>
+                           <div>
+                                <p>Name: ${obj.name}</p>
+                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>Count: ${obj.count}</p>
+                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                                <p>Date of proposal's completed: ${this.formatDate(new Date(Date.parse(obj.date_completed)))}</p>
+                           </div>
+                        </div>`;
+                    else
+                        return `
                         <div class='overall proposals'>
                            <div>
                                 <p>Name: ${obj.name}</p>
@@ -71,26 +84,21 @@ export default class PurchaseProposalsView extends JetView {
                 },
                 "mdi-autorenew": (event, id) => {
                     this.changeItemStatus("unreviewed", id);
-                }
-            },
-            on: {
-                onSelectChange: () => {
-                    const tabbar = this.getRoot().queryView({ view: "tabbar" });
-                    const dataview = this.getRoot().queryView({ view: "dataview" });
-                    dataview.filter((obj) => {
-                        return obj.status.toString().indexOf(tabbar.getValue()) != -1;
-                    });
+                },
+                "mdi-check-all": (event, id) => {
+                    this.changeItemStatus("completed", id);
                 }
             }
         };
 
         const tabbar = {
             view: "tabbar",
-            value: "accepted",
+            value: "unreviewed",
             options: [
                 { "id": "unreviewed", "value": _("Unreviewed") },
                 { "id": "accepted", "value": _("Accepted") },
-                { "id": "rejected", "value": _("Rejected") }
+                { "id": "rejected", "value": _("Rejected") },
+                { "id": "completed", "value": _("Completed") }
             ],
             on: {
                 onChange: (id) => {
@@ -122,10 +130,22 @@ export default class PurchaseProposalsView extends JetView {
     }
 
     init() {
-        proposals.waitData.then(() => {
-            const tabbar = this.getRoot().queryView({ view: "tabbar" });
-            tabbar.setValue("unreviewed");
+        const tabbar = this.getRoot().queryView({ view: "tabbar" });
+        const dataview = this.getRoot().queryView({ view: "dataview" });
+        this.updateEvent = this.updateEvent = proposals.data.attachEvent("onDataUpdate", (id, data, old) => {
+            dataview.filter((obj) => {
+                return obj.status.toString().indexOf(tabbar.getValue()) != -1;
+            });
         });
+        proposals.waitData.then(() => {
+            dataview.filter((obj) => {
+                return obj.status.toString().indexOf(tabbar.getValue()) != -1;
+            });
+        });
+    }
+
+    destroy() {
+        proposals.data.detachEvent(this.updateEvent);
     }
 
     changeItemStatus(status, id) {
@@ -134,8 +154,6 @@ export default class PurchaseProposalsView extends JetView {
         item.status = status;
         item.date_approve = new Date();
         proposals.updateItem(item.id, item);
-        dataview.select(dataview.getFirstId());
-        dataview.unselectAll();
     }
 
     formatDate(date) {

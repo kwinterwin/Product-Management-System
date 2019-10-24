@@ -24,18 +24,28 @@ export default class GoodsCategoriesTreeView extends JetView {
 					const tree = this.getRoot().queryView({ view: "tree" }), value = tree.getItem(id);
 					tree.select(id);
 					const context = webix.$$("contextmenu-mine");
+
+					if (value.$parent === 0) {
+						if (context.isItemEnabled("Delete")) {
+							context.disableItem("Delete");
+						}
+					}
+					else {
+						if (!context.isItemEnabled("Delete")) {
+							context.enableItem("Delete");
+						}
+					}
 					if (value.$level > 2) {
 						if (context.isItemEnabled("Add")) {
 							context.disableItem("Add");
 						}
-						this.selectTreeItemId = id;
 					}
 					else {
 						if (!context.isItemEnabled("Add")) {
 							context.enableItem("Add");
 						}
-						this.selectTreeItemId = id;
 					}
+					this.selectTreeItemId = id;
 				},
 				onItemDblClick: (id) => {
 					this.getRoot().queryView({ view: "tree" }).open(id);
