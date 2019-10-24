@@ -71,7 +71,7 @@ export default class LoginView extends JetView {
 				{
 					cols: [
 						{ width: 150 },
-						{ view: "button", value: _("Register"), click: () => { this.authorization(); }, hotkey: "enter", localId: "authorizBtn", inputWidth: 100 }
+						{ view: "button", value: _("Register"), click: () => { this.authorization(); }, hotkey: "enter", localId: "authorizBtn", inputWidth: 250 }
 					]
 				}
 			],

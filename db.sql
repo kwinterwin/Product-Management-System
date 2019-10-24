@@ -157,3 +157,115 @@ CHANGE COLUMN `date_completed` `date_completed` DATETIME NULL DEFAULT NULL ;
 
 ALTER TABLE `prms`.`user_logindata` 
 CHANGE COLUMN `role` `role` VARCHAR(10) NOT NULL DEFAULT 'user' ;
+
+ALTER TABLE `prms`.`goods` 
+ADD COLUMN `supplier_id` INT NOT NULL AFTER `count`;
+
+ALTER TABLE `prms`.`goods` 
+ADD CONSTRAINT `s_id_key`
+  FOREIGN KEY (`supplier_id`)
+  REFERENCES `prms`.`suppliers` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 1;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 2;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 3;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 4;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 5;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 6;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 7;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 8;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 9;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 10;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 11;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 12;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 13;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 14;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 15;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 16;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 17;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 18;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 19;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 20;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 21;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 22;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 23;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 24;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 25;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 26;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 27;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 28;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 29;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 30;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 31;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 32;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 33;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 34;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 35;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 36;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 37;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 38;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 39;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 40;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 41;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 42;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 43;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 44;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 45;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 46;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 47;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 48;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 49;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 50;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 51;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 52;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 53;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 54;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 55;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 56;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 57;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 58;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 59;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 60;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 61;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 62;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 63;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 64;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 65;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 66;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 67;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 68;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 69;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 70;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 71;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 72;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 73;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 74;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 75;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 76;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 77;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 78;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 79;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 80;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 81;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 82;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 83;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 84;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 85;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 86;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 87;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 88;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 89;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 90;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 91;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 92;
+UPDATE `goods` SET `supplier_id` = 2 WHERE `id` = 93;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 94;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 95;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 96;
+UPDATE `goods` SET `supplier_id` = 3 WHERE `id` = 97;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 98;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 99;
+UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 100;
+
