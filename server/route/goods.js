@@ -57,9 +57,9 @@ let goodsData = {
 
     addGood(req, res) {
         const good = req.body;
-        const query = `INSERT INTO prms.goods (name, price, manuf_country, articul, category, barcode, brand, count)
+        const query = `INSERT INTO prms.goods (name, price, manuf_country, articul, category_id, barcode, brand, count)
                                        VALUES ('${good.name}', ${good.price}, '${good.manuf_country}', '${good.articul}', 
-                                       ${good.category}, '${good.barcode}', '${good.brand}', ${good.count})`;
+                                       ${good.category_id}, '${good.barcode}', '${good.brand}', ${good.count})`;
         con.con.query(query, (err, result) => {
             if (err) {
                 res.status(500).send(err);

@@ -267,3 +267,15 @@ UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 100;
 
 ALTER TABLE `prms`.`goods` 
 CHANGE COLUMN `price` `price` FLOAT NOT NULL ;
+
+
+ALTER TABLE `prms`.`goods` 
+DROP FOREIGN KEY `categories_id`;
+ALTER TABLE `prms`.`goods` 
+CHANGE COLUMN `category` `category_id` INT(11) NOT NULL ;
+ALTER TABLE `prms`.`goods` 
+ADD CONSTRAINT `categories_id`
+  FOREIGN KEY (`category_id`)
+  REFERENCES `prms`.`goods_categories` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
