@@ -54,7 +54,7 @@ app.post("/server/avatar", upload.single("upload"), users.addAvatarFile);
 app.post("/server/login", users.login);
 app.post("/server/login/status", users.loginStatus);
 app.post("/server/logout", users.logout);
-// app.post("/server/login/authorization", users.authorization);
+app.post("/server/login/authorization", users.authorization);
 
 app.get("/server/users", users.getAllUsers);
 app.put("/server/users/:id", users.editData);
@@ -69,8 +69,10 @@ app.get("/server/goods_categories", goods.getAllCategories);
 app.post("/server/goods_categories", goods.addCategory);
 app.delete("/server/goods_categories/:id", goods.deleteCategory);
 app.post("/server/goods", goods.addGood);
+app.put("/server/goods/:id", goods.updateGoodInformation);
 app.get("/server/goods", goods.getAllGoods);
 app.get("/server/goods/:id", goods.getGood);
+app.get("/server/good/:id", goods.getGoodForId);
 
 app.post("/server/proposals", proposals.addProposal);
 app.get("/server/proposals", proposals.getAllProposals);

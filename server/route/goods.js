@@ -83,6 +83,38 @@ let goodsData = {
                 res.json(result);
             }
         });
+    },
+
+    getGoodForId(req, res) {
+        const id = req.params.id;
+        const query = `select * from prms.goods where id=${id}`;
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
+    updateGoodInformation(req, res) {
+        const id = req.params.id;
+        const good = req.body;
+        const query = `UPDATE prms.goods SET name = "${good.name}", price=${good.price}, manuf_country = "${good.manuf_country}",
+                    articul = "${good.articul}", category = ${good.category}, barcode = "${good.barcode}",
+                     brand = "${good.brand}", count = ${good.count}
+                    WHERE id = ${id}`;
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
     }
 };
 module.exports = goodsData;

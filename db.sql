@@ -73,34 +73,10 @@ INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская
 INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Женская обувь', '1');
 INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Мужская обувь', '1');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Коляски', '2');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Автокресла', '2');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Канцелярия', '10');
+INSERT INTO `prms`.`goods_categories` (`name`, `parent`) VALUES ('Торшеры', '3');
 
 CREATE TABLE `prms`.`goods` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -178,3 +154,6 @@ ALTER TABLE `prms`.`proposals`
 CHANGE COLUMN `date_registration` `date_registration` DATETIME NOT NULL ,
 CHANGE COLUMN `date_approve` `date_approve` DATETIME NULL DEFAULT NULL ,
 CHANGE COLUMN `date_completed` `date_completed` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `prms`.`user_logindata` 
+CHANGE COLUMN `role` `role` VARCHAR(10) NOT NULL DEFAULT 'user' ;

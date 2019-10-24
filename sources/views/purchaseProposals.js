@@ -90,7 +90,7 @@ export default class PurchaseProposalsView extends JetView {
             options: [
                 { "id": "unreviewed", "value": _("Unreviewed") },
                 { "id": "accepted", "value": _("Accepted") },
-                { "id": "rejected", "value": _("Reject") }
+                { "id": "rejected", "value": _("Rejected") }
             ],
             on: {
                 onChange: (id) => {

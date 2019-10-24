@@ -1,4 +1,4 @@
-import { JetView, plugins } from "webix-jet";
+import { JetView } from "webix-jet";
 import { goods_categories } from "../models/goods_categories";
 import GoodInformationPopupView from "./goodInformationPopup";
 

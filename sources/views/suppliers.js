@@ -26,12 +26,12 @@ export default class SuppliersView extends JetView {
             data: suppliers,
             columns: [
                 { id: "id", header: "", width: 50 },
-                { id: "supplier_name", header: "Supplier name", fillspace: true },
-                { id: "tin", header: "TIN", width: 150 },
-                { id: "surname", header: "Surname", width: 200 },
-                { id: "name", header: "Name", width: 100 },
-                { id: "patronymic", header: "Patronymic", width: 200 },
-                { id: "phone", header: "Phone", width: 200 },
+                { id: "supplier_name", header: "Supplier name", fillspace:true },
+                { id: "tin", header: "TIN", adjust:true },
+                { id: "surname", header: "Surname", adjust:true },
+                { id: "name", header: "Name", adjust:true},
+                { id: "patronymic", header: "Patronymic", adjust:true },
+                { id: "phone", header: "Phone", adjust:true },
                 { id: "editInformation", header: "", template: "<i class='mdi mdi-lead-pencil'></i>", width: 40 }
             ],
             onClick: {
