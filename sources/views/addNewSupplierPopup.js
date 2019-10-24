@@ -60,7 +60,7 @@ export default class NewSupplierPopupView extends JetView {
 					{ height: 10 },
 					{
 						cols: [
-							{ view: "text", label: _("Phone"), labelWidth: 60, name: "phone", required: true },
+							{ view: "text", label: _("Phone"), labelWidth: 60, name: "phone", required: true, pattern: { mask: "+###-## ###-##-##" } },
 							{ width: 5 },
 							{ view: "text", label: _("E-mail"), labelWidth: 60, name: "email" },
 							{ width: 5 },
@@ -114,7 +114,27 @@ export default class NewSupplierPopupView extends JetView {
 									{}
 								]
 							}
-						]
+						],
+						rules: {
+							"email": function (value) {
+								if (value) {
+									return webix.rules.isEmail(value);
+								}
+								else return true;
+							},
+							"surname": function (value) {
+								return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+							},
+							"name": function (value) {
+								return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+							},
+							"patronymic": function (value) {
+								return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+							},
+							"phone": function (value) {
+								return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(value);
+							}
+						}
 					}
 				]
 			}

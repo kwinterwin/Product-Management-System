@@ -104,7 +104,7 @@
 .overall.proposals {
 	flex-direction : column;
 	justify-content: space-between;
-	height               : 220px;
+	height         : 220px;
 }
 
 .mdi-close {
@@ -261,4 +261,13 @@
 	justify-content: center;
 	flex-direction : column;
 	text-align     : center;
+}
+
+.supplierInformation p {
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+.supplierInformation h3{
+	font-size:15px;
 }
