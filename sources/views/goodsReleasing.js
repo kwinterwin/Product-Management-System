@@ -93,6 +93,7 @@ export default class GoodsReleasingView extends JetView {
 			on: {
 				onAfterSelect: () => {
 					const form = this.getRoot().queryView({ view: "form" });
+					form.clear();
 					if (!form.isVisible()) {
 						form.show();
 					}
@@ -100,12 +101,52 @@ export default class GoodsReleasingView extends JetView {
 			}
 		};
 
+		const priceLabel = {
+			view: "label",
+			value: "0$",
+			priceLabel: true,
+			width: 100
+		};
+
 		const form = {
 			view: "form",
 			hidden: true,
 			borderless: true,
 			elements: [
-				{ view: "counter", label: "Enter count of realizing product", labelWidth: 300, required: true, name: "count" },
+				{
+					cols: [
+						{
+							view: "counter", label: "Enter count of realizing product", labelWidth: 300, required: true, name: "count", on: {
+								onChange: (newValue) => {
+									if (/\d+.\d/.test(newValue)) {
+										webix.message({ type: "error", text: "The quantity of goods cannot be a fractional number." });
+										const form = this.getRoot().queryView({ view: "form" });
+										form.clear();
+									}
+									else {
+										const priceLabel = this.getRoot().queryView({ priceLabel: true });
+										const datatable = this.getRoot().queryView({ view: "datatable" });
+										const selectedItem = datatable.getSelectedItem();
+										const total_price = parseFloat(selectedItem.price) * parseInt(newValue);
+										priceLabel.setValue(`${total_price} $`);
+									}
+								},
+								onTimedKeyPress: () => {
+									const priceLabel = this.getRoot().queryView({ priceLabel: true });
+									const datatable = this.getRoot().queryView({ view: "datatable" });
+									const selectedItem = datatable.getSelectedItem();
+									const counter = this.getRoot().queryView({ view: "counter" });
+									const value = counter.getValue();
+									if (!isNaN(value)) {
+										const total_price = parseFloat(selectedItem.price) * parseInt(value);
+										priceLabel.setValue(`${total_price} $`);
+									}
+								}
+							}
+						},
+						priceLabel
+					]
+				},
 				{
 					view: "button", value: "Realize", inputWidth: 200, align: "right", click: () => {
 						const form = this.getRoot().queryView({ view: "form" });
@@ -126,7 +167,12 @@ export default class GoodsReleasingView extends JetView {
 						}
 					}
 				}
-			]
+			],
+			rules: {
+				"count": (value) => {
+					return (webix.rules.isNumber(value) && value !== 0);
+				}
+			}
 		};
 
 		return {

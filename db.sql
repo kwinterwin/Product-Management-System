@@ -108,9 +108,6 @@ INSERT INTO `goods` (`name`,`price`,`manuf_country`,`articul`,`barcode`,`brand`,
 INSERT INTO `goods` (`name`,`price`,`manuf_country`,`articul`,`barcode`,`brand`,`count`,`category`) VALUES ("Orci LLP",827,"United States","S7J3V1051X11T","1654040170299","Adipiscing LLC",186,24),("Donec LLP",929,"Laos","U5P3L5795E31K","1669042098399","Iaculis PC",295,10),("Eget Massa Suspendisse Industries",815,"Saudi Arabia","O8J7M8141C73E","1657110817299","Nunc Nulla Vulputate Company",246,21),("Semper Tellus Id Associates",996,"Mexico","N2L8A7428L44D","1620061501799","Natoque Penatibus Et Corp.",163,12),("Lorem Luctus Ut Inc.",937,"Tuvalu","B7Z8A6074O79F","1603021212399","Ultricies Adipiscing Corp.",40,14),("Arcu Vestibulum PC",849,"Malaysia","S4U5S8670V38G","1639101112599","Tortor Nunc LLP",259,7),("Arcu Nunc Mauris PC",740,"Guadeloupe","S1W2N4932O52K","1663070573699","Adipiscing Lobortis Corp.",261,5),("Magna Duis Company",907,"Pitcairn Islands","M4G5Y6423L11C","1616120579099","Pellentesque A Corp.",254,13),("Mollis PC",208,"Trinidad and Tobago","L5L3V5174E20F","1690020186699","Lobortis Tellus Justo LLC",197,4),("Dignissim Consulting",33,"Kyrgyzstan","C9B1Z7366I96M","1669022382099","Dis Limited",151,9);
 INSERT INTO `goods` (`name`,`price`,`manuf_country`,`articul`,`barcode`,`brand`,`count`,`category`) VALUES ("Velit Sed Associates",405,"Macedonia","S3A7K7262E72F","1685111984699","Et Tristique Pellentesque Institute",241,8),("Ut LLP",673,"Kyrgyzstan","T5S9N9922V11B","1614112884499","Laoreet Lectus Institute",209,3),("Nullam Enim PC",915,"United Arab Emirates","O8O1F5054Y27R","1601022037099","Torquent Per Conubia PC",42,5),("Lobortis LLC",177,"Holy See (Vatican City State)","T0C5Y2153N69G","1628021746999","Nunc Quis Arcu Associates",295,3),("Nunc Sit Amet LLC",605,"Russian Federation","R3W5C5013T85I","1625060434299","Dignissim Tempor Associates",105,16),("Tempor Corporation",488,"French Guiana","H0J7B2548A13L","1678032615399","Sed Leo Inc.",59,5),("Non Industries",295,"Tanzania","U8N5E5254H67X","1602031767599","Lacinia Industries",281,22),("Faucibus Ut Nulla Institute",806,"Northern Mariana Islands","D7L0F3900M98E","1674072464899","Mi Eleifend Egestas Incorporated",269,9),("Orci In Corporation",615,"Jordan","Z6S3A5023N92Z","1684062317199","Id Industries",121,7),("Maecenas Iaculis Company",66,"New Caledonia","E0Q6Q7522X01L","1610021835299","Aliquam Limited",113,9);
 
-
-
-
 CREATE TABLE `prms`.`proposals` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(300) NOT NULL,
@@ -145,10 +142,8 @@ CREATE TABLE `prms`.`proposals` (
 ALTER TABLE `prms`.`proposals` 
 ADD COLUMN `status` VARCHAR(45) NULL AFTER `date_completed`;
 
-
 ALTER TABLE `prms`.`proposals` 
 CHANGE COLUMN `status` `status` VARCHAR(45) NULL DEFAULT 'unreviewed' ;
-
 
 ALTER TABLE `prms`.`proposals` 
 CHANGE COLUMN `date_registration` `date_registration` DATETIME NOT NULL ,
@@ -269,3 +264,6 @@ UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 98;
 UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 99;
 UPDATE `goods` SET `supplier_id` = 1 WHERE `id` = 100;
 
+
+ALTER TABLE `prms`.`goods` 
+CHANGE COLUMN `price` `price` FLOAT NOT NULL ;
