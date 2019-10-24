@@ -21,5 +21,6 @@ export default {
     "Product searching": "Product searching",
     "Goods releasing": "Goods releasing",
     "Reports making": "Reports making",
-    "Language":"Language"
+    "Language":"Language",
+    "Edit personal information":"Edit personal information"
 };
