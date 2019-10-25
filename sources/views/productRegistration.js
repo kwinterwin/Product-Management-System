@@ -38,12 +38,17 @@ export default class ProductRegistrationView extends JetView {
 
 		const form = {
 			view: "form",
-			borderless:true,
+			borderless: true,
 			hidden: true,
 			elements: [
 				{ view: "text", label: _("Product name"), name: "name", labelWidth: 200, required: true },
 				{ view: "text", label: _("Сountry of production"), name: "manuf_country", labelWidth: 200, required: true },
-				{ view: "counter", label: _("Price"), name: "price", labelWidth: 200, required: true },
+				{
+					cols: [
+						{ view: "counter", label: _("Price"), name: "price", labelWidth: 200, required: true },
+						{ view: "label", label: "$" }
+					]
+				},
 				{ view: "text", label: _("Barcode (13)"), name: "barcode", labelWidth: 200, required: true },
 				{ view: "text", label: _("Brand"), name: "brand", labelWidth: 200, required: true },
 				{ view: "text", label: _("Article"), name: "articul", labelWidth: 200, required: true },
@@ -71,7 +76,7 @@ export default class ProductRegistrationView extends JetView {
 		return {
 			rows: [
 				registrationCombo,
-				{height:10},
+				{ height: 10 },
 				{ emptyLayout: true },
 				form
 			],
