@@ -11,7 +11,7 @@ export default class LoginView extends JetView {
 			cols: [
 				{ view: "label", label: _("Product Management System"), align: "left" },
 				{
-					view: "button", label: _("Login"), width: 150, inputWidth: 150, align: "right", click: () => {
+					view: "button", label: _("Sign in"), width: 150, inputWidth: 150, align: "right", click: () => {
 						if (this.$$("loginForm").isVisible() === false) {
 							this.$$("loginForm").show();
 							this.$$("registerForm").hide();
@@ -38,13 +38,13 @@ export default class LoginView extends JetView {
 			css: "form",
 			paddingX: 90,
 			elements: [
-				{ view: "template", template: _("Login"), type: "header", borderless: true },
+				{ view: "template", template: _("Sign in"), type: "header", borderless: true },
 				{ view: "text", label: _("Login"), name: "login", labelWidth: 150, invalidMessage: "Login can't be empty." },
 				{ view: "text", label: _("Password"), type: "password", name: "password", labelWidth: 150, invalidMessage: "Password can't be empty." },
 				{
 					cols: [
 						{ width: 150 },
-						{ view: "button", value: _("Login"), click: () => this.do_login(), hotkey: "enter", localId: "loginBtn", inputWidth: 100, width: 120 }
+						{ view: "button", value: _("Sign in"), click: () => this.do_login(), hotkey: "enter", localId: "loginBtn", inputWidth: 100, width: 120 }
 					]
 				}
 			],
@@ -63,15 +63,15 @@ export default class LoginView extends JetView {
 			hidden: true,
 			elements: [
 				{ view: "template", template: _("Register"), type: "header", borderless: true, localId: "header" },
-				{ view: "text", label: _("Login"), name: "login", labelWidth: 150, invalidMessage: _("Login can't be empty."), localId: "loginField" },
-				{ view: "text", label: _("Password"), type: "password", name: "password", labelWidth: 150, invalidMessage: _("Password can't be empty.") },
+				{ view: "text", label: _("Login"), name: "login", labelWidth: 200, invalidMessage: _("Login can't be empty."), localId: "loginField" },
+				{ view: "text", label: _("Password"), type: "password", name: "password", labelWidth: 200, invalidMessage: _("Password can't be empty.") },
 				{
-					view: "text", label: _("Confirm password"), type: "password", name: "confirm_password", labelWidth: 150, invalidMessage: _("This field can't be empty.")
+					view: "text", label: _("Confirm password"), type: "password", name: "confirm_password", labelWidth: 200, invalidMessage: _("This field can't be empty.")
 				},
 				{
 					cols: [
 						{ width: 150 },
-						{ view: "button", value: _("Register"), click: () => { this.authorization(); }, hotkey: "enter", localId: "authorizBtn", inputWidth: 250 }
+						{ view: "button", value: _("Register"), click: () => { this.authorization(); }, hotkey: "enter", localId: "authorizBtn", inputWidth: 200, align:"right" }
 					]
 				}
 			],

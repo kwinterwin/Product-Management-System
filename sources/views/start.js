@@ -37,7 +37,7 @@ export default class Start extends JetView {
 			data: [
 				{ id: "suppliers", value: _("Suppliers"), icon: "mdi mdi-car-pickup" },
 				{ id: "goods", value: _("Goods"), icon: "mdi mdi-briefcase" },
-				{ id: "", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
+				{ id: "reports", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
 				{ id: "purchaseProposals", value: _("Purchase proposals"), icon: "mdi mdi-book" },
 				{ id: "users", value: _("Users"), icon: "mdi mdi-account-group" },
 				{ id: "settings", value: _("Settings"), icon: "mdi mdi-cogs" }
@@ -53,7 +53,7 @@ export default class Start extends JetView {
 				{ id: "productRegistration", value: _("Product registration"), icon: "mdi mdi-cart-plus" },
 				{ id: "", value: _("Product searching"), icon: "mdi mdi-search-web" },
 				{ id: "goodsReleasing", value: _("Goods releasing"), icon: "mdi mdi-truck" },
-				{ id: "", value: _("Reports making"), icon: "mdi mdi-file-document" },
+				{ id: "reports", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
 				{ id: "userSettings", value: _("Settings"), icon: "mdi mdi-cogs" }
 			]
 		};

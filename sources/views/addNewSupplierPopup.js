@@ -3,7 +3,7 @@ import { suppliers } from "../models/suppliers";
 
 export default class NewSupplierPopupView extends JetView {
 
-	constructor(app, name, data) {
+	constructor(app, name) {
 		super(app, name);
 		this.isChange = false;
 		this.supplier = null;
@@ -30,10 +30,10 @@ export default class NewSupplierPopupView extends JetView {
 			label: _("Basic information of supplier"),
 			body: {
 				rows: [
-					{ view: "text", label: _("Supplier name"), name: "supplier_name", labelWidth: 130, required: true },
+					{ view: "text", label: _("Supplier name"), name: "supplier_name", labelWidth: 170, required: true },
 					{
 						cols: [
-							{ view: "text", label: _("TIN"), name: "tin", required: true },
+							{ view: "text", label: _("TIN"), name: "tin", required: true, labelWidth: 90 },
 							{ width: 10 },
 							{ view: "text", label: _("Checkpoint"), name: "checkpoint", labelWidth: 100, required: true }
 						]
@@ -95,7 +95,7 @@ export default class NewSupplierPopupView extends JetView {
 									{},
 									{
 										view: "button",
-										value: "Save",
+										value: _("Save"),
 										type: "form",
 										click: () => {
 											const form = this.getRoot().queryView({ view: "form" });

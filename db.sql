@@ -279,3 +279,54 @@ ADD CONSTRAINT `categories_id`
   REFERENCES `prms`.`goods_categories` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `prms`.`realize_reports` (
+  `id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `good_id` INT NOT NULL,
+  `count` INT NOT NULL,
+  `total_count` FLOAT NOT NULL,
+  `date_realize` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `user_id_key_idx` (`user_id` ASC),
+  INDEX `goods_id_key_idx` (`good_id` ASC),
+  CONSTRAINT `user_rr_id_key`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `prms`.`users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `goods_rr_id_key`
+    FOREIGN KEY (`good_id`)
+    REFERENCES `prms`.`goods` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+
+ALTER TABLE `prms`.`realize_reports` 
+CHANGE COLUMN `total_count` `total_price` FLOAT NOT NULL ;
+
+
+ALTER TABLE `prms`.`realize_reports` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;

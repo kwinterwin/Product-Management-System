@@ -7,6 +7,7 @@ const users = require("./server/route/users");
 const suppliers = require("./server/route/suppliers");
 const goods = require("./server/route/goods");
 const proposals = require("./server/route/proposals");
+const reports = require("./server/route/reports");
 const multer = require("multer");
 const app = express();
 
@@ -78,11 +79,8 @@ app.post("/server/proposals", proposals.addProposal);
 app.get("/server/proposals", proposals.getAllProposals);
 app.put("/server/proposals/:id", proposals.updateProposal);
 
-// app.get("/server/likes", likes.getData);
-// app.post("/server/likes", likes.setData);
-
-// app.get("/server/comments", comments.getData);
-// app.post("/server/comments", comments.addData);
+app.post("/server/realize_report", reports.addRealizeReport);
+app.get("/server/realize_report", reports.getAllRealizeReport);
 
 app.listen(port, () => {
 	console.log("Server was started on 3000 port...");

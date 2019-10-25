@@ -26,12 +26,12 @@ export default class GoodInformationPopupView extends JetView {
                 if (obj.hasOwnProperty("name"))
                     return `
                     <div>
-                        <p><b>Product name:</b> ${obj.name}</p>
+                        <p><b>${_("Product name")}:</b> ${obj.name}</p>
                         <p><b>Сountry of production:</b> ${obj.manuf_country}</p>
                         <p><b>Article:</b> ${obj.articul}</p>
                         <p><b>Price:</b> ${obj.price} BYN</p>
                         <p><b>Brand:</b> ${obj.brand}</p>
-                        <p><b>Category:</b> ${goods_categories.getItem(obj.category).name}</p>
+                        <p><b>Category:</b> ${goods_categories.getItem(obj.category_id).name}</p>
                         <p><b>Count:</b> ${obj.count}</p>
                     </div>
                 `;

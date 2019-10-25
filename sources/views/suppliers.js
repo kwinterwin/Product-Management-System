@@ -13,7 +13,7 @@ export default class SuppliersView extends JetView {
                 { view: "icon", icon: "mdi mdi-car-pickup", css: "mdi-toolbar-icons", width: 70, height: 40 },
                 { view: "label", label: _("Suppliers"), align: "left" },
                 {
-                    view: "button", label: _("Add new supplier"), width: 250, align: "right", type: "icon", icon: "mdi mdi-account-multiple-plus",
+                    view: "button", label: _("Add new supplier"), width: 300, align: "right", type: "icon", icon: "mdi mdi-account-multiple-plus",
                     click: () => {
                         this.addNewSupplierPopup.show();
                     }

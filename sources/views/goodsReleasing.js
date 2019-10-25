@@ -159,10 +159,33 @@ export default class GoodsReleasingView extends JetView {
 							}
 							else {
 								const item = goods.getItem(selectedItem.id);
+								const user = this.app.getService("user").getUser();
+								const reports_data = {
+									user_id: user.user_id,
+									good_id: item.id,
+									count: values.count,
+									total_price: parseInt(values.count) * parseFloat(item.price),
+									date_realize: new Date()
+								};
 								item.count -= values.count;
 								goods.updateItem(item.id, item);
 								datatable.updateItem(item.id, item);
 								form.clear();
+								webix.ajax().post("/server/realize_report", reports_data)
+									.then((result) => {
+										if (result.json().insertId) {
+											webix.message({
+												type: "success",
+												text: "The deal is registered. A report about it can be seen in the 'Reports' section."
+											});
+										}
+										else {
+											webix.message({
+												type: "error",
+												text: "The deal isn't registered."
+											});
+										}
+									});
 							}
 						}
 					}

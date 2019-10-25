@@ -13,6 +13,6 @@ webix.ready(() => {
 	});
 
 	app.use(plugins.User, { model: session });
-	app.use(plugins.Locale, { lang: "en" });
+	app.use(plugins.Locale, { lang: "ru" });
 	app.render();
 });
