@@ -88,11 +88,11 @@ export default class Start extends JetView {
 			if (dataUser.firstly) {
 				this.app.show("/start/userSettings");
 			}
-			else this.app.show("/start/composeNewProposal");
+			// else this.app.show("/start/composeNewProposal");
 		}
 		else if (dataUser.role === "admin") {
 			this.$$("adminSidebar").show();
-			this.app.show("/start/suppliers");
+			// this.app.show("/start/suppliers");
 		}
 	}
 

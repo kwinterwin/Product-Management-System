@@ -9,7 +9,7 @@ const con = require("../../server");
 let reportsData = {
 
     getAllRealizeReport(req, res) {
-        const query = "select rr.*, g.* from prms.realize_reports as rr, prms.goods as g where rr.good_id=g.id";
+        const query = "select rr.* from prms.realize_reports as rr";
         con.con.query(query, (err, result) => {
             if (err) {
                 res.status(500).send(err);

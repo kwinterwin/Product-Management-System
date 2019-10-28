@@ -80,7 +80,7 @@ export default class GoodsReleasingView extends JetView {
 				{ id: "name", header: _("Product name"), fillspace: true },
 				{ id: "manuf_country", header: _("Сountry of production"), adjust: true },
 				{ id: "price", header: _("Price"), adjust: true },
-				{ id: "count", header: _("Count"), adjust: true },
+				{ id: "total_count", header: _("Count"), adjust: true },
 				{ id: "editInformation", header: "", template: "<i class='mdi mdi-eye'></i>", width: 40 }
 			],
 			onClick: {
@@ -154,7 +154,7 @@ export default class GoodsReleasingView extends JetView {
 						const selectedItem = datatable.getSelectedItem();
 						if (form.validate()) {
 							const values = form.getValues();
-							if (selectedItem.count < values.count) {
+							if (selectedItem.total_count < values.count) {
 								webix.message({ type: "error", text: "The entered quantity is more than stored in the warehouse!" });
 							}
 							else {
@@ -167,7 +167,7 @@ export default class GoodsReleasingView extends JetView {
 									total_price: parseInt(values.count) * parseFloat(item.price),
 									date_realize: new Date()
 								};
-								item.count -= values.count;
+								item.total_count -= values.count;
 								goods.updateItem(item.id, item);
 								datatable.updateItem(item.id, item);
 								form.clear();
@@ -192,7 +192,7 @@ export default class GoodsReleasingView extends JetView {
 				}
 			],
 			rules: {
-				"count": (value) => {
+				"total_count": (value) => {
 					return (webix.rules.isNumber(value) && value !== 0);
 				}
 			}

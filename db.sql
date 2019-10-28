@@ -330,3 +330,22 @@ CHANGE COLUMN `total_count` `total_price` FLOAT NOT NULL ;
 
 ALTER TABLE `prms`.`realize_reports` 
 CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `prms`.`goods` 
+CHANGE COLUMN `count` `total_count` INT(11) NOT NULL ;
+
+CREATE TABLE `registration_reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `good_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `proposal_id` int(11) NOT NULL,
+  `date_registration` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id_reg_key_idx` (`user_id`),
+  KEY `good_id_req_key_idx` (`good_id`),
+  KEY `proposal_id_reg_key_idx` (`proposal_id`),
+  CONSTRAINT `good_id_req_key` FOREIGN KEY (`good_id`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `proposal_id_reg_key` FOREIGN KEY (`proposal_id`) REFERENCES `proposals` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_id_reg_key` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+

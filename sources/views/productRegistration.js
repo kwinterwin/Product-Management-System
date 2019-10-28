@@ -46,8 +46,9 @@ export default class ProductRegistrationView extends JetView {
 				{
 					cols: [
 						{ view: "counter", label: _("Price"), name: "price", labelWidth: 200, required: true },
-						{ view: "label", label: "$" }
-					]
+						{ view: "label", label: "$", css: "dollar-label" }
+					],
+					css: "productRegistrationLayout"
 				},
 				{ view: "text", label: _("Barcode (13)"), name: "barcode", labelWidth: 200, required: true },
 				{ view: "text", label: _("Brand"), name: "brand", labelWidth: 200, required: true },
@@ -70,7 +71,22 @@ export default class ProductRegistrationView extends JetView {
 					}
 				},
 				{}
-			]
+			],
+			rules: {
+				"surname": function (value) {
+					return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+				},
+				"manuf_country": function (value) {
+					return !/[^-А-ЯA-Z\x27а-яa-z]/.test(value);
+				},
+				"price": webix.rules.isNumber,
+				"barcode": (value) => {
+					return /\d{13}/.test(value);
+				},
+				"count": (value) => {
+					return !/\d+.\d/.test(value);
+				}
+			}
 		};
 
 		return {

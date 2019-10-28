@@ -112,6 +112,19 @@
 	cursor: pointer;
 }
 
+.mdi:hover {
+	cursor: pointer;
+}
+
+.productRegistrationLayout {
+	position: relative;
+}
+
+.productRegistrationLayout .dollar-label {
+	position: absolute;
+	left    : 325px;
+}
+
 .proposal-button-section section i {
 	font-size: 25px !important;
 }
