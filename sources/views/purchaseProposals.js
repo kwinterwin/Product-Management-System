@@ -27,7 +27,6 @@ export default class PurchaseProposalsView extends JetView {
                            </div>
                            <div class="proposal-button-section">
                                 <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
-                                <section><i class="mdi mdi-check-all" title="Send to unreviewed proposals"></i></section>
                            </div>
                         </div>`;
                     else if (obj.status === "rejected")
@@ -74,7 +73,6 @@ export default class PurchaseProposalsView extends JetView {
 
                 }
             },
-            data: proposals,
             onClick: {
                 "mdi-close": (event, id) => {
                     this.changeItemStatus("rejected", id);
@@ -132,12 +130,16 @@ export default class PurchaseProposalsView extends JetView {
     init() {
         const tabbar = this.getRoot().queryView({ view: "tabbar" });
         const dataview = this.getRoot().queryView({ view: "dataview" });
-        this.updateEvent = this.updateEvent = proposals.data.attachEvent("onDataUpdate", (id, data, old) => {
+        this.updateEvent = proposals.data.attachEvent("onDataUpdate", (id, data, old) => {
             dataview.filter((obj) => {
                 return obj.status.toString().indexOf(tabbar.getValue()) != -1;
             });
         });
-        proposals.waitData.then(() => {
+        Promise.all([
+            suppliers.waitData,
+            proposals.waitData
+        ]).then(() => {
+            dataview.parse(proposals);
             dataview.filter((obj) => {
                 return obj.status.toString().indexOf(tabbar.getValue()) != -1;
             });

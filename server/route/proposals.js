@@ -42,9 +42,9 @@ let proposalsData = {
         const proposal = req.body;
         const query = `Update prms.proposals set name = "${proposal.name}", user_id = ${proposal.user_id}, category_id = ${proposal.category_id}, 
                             count = ${proposal.count}, supplier_id = ${proposal.supplier_id}, date_registration = "${formatDate(proposal.date_registration)}",
-                            status = "${proposal.status}", date_approve = "${formatDate(proposal.date_approve)}"
-                            where id = ${proposal.id}
-                        `;
+                            status = "${proposal.status}", date_approve = "${formatDate(proposal.date_approve)}" 
+                            ${proposal.date_completed ? ",date_completed = '${formatDate(proposal.date_completed)}'" : ""} where id = ${ proposal.id}
+        `;
         con.con.query(query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
@@ -56,61 +56,5 @@ let proposalsData = {
         });
     }
 
-    // deleteCategory(req, res) {
-    //     const id = req.params.id;
-    //     const query = `delete from prms.goods_categories where id = ${id}`;
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // },
-
-    // getAllGoods(req, res) {
-    //     const query = "select * from prms.goods";
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // },
-
-    // addGood(req, res) {
-    //     const good = req.body;
-    //     const query = `INSERT INTO prms.goods (name, price, manuf_country, articul, category, barcode, brand, count)
-    //                                    VALUES ('${good.name}', ${good.price}, '${good.manuf_country}', '${good.articul}', 
-    //                                    ${good.category}, '${good.barcode}', '${good.brand}', ${good.count})`;
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // },
-
-    // getGood(req, res) {
-    //     const id = req.params.id;
-    //     const query = `select * from prms.goods where category=${id}`;
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // }
 };
 module.exports = proposalsData;

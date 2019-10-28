@@ -7,6 +7,7 @@ export default class ProductRegistrationView extends JetView {
 	constructor(app, name) {
 		super(app, name);
 		this.comboOptions = [];
+		this.comboId = null;
 	}
 
 	config() {
@@ -27,6 +28,7 @@ export default class ProductRegistrationView extends JetView {
 					const comboList = this.getRoot().queryView({ view: "combo" }).getList();
 					const value = comboList.getItem(id);
 					const emptyLayout = this.getRoot().queryView({ emptyLayout: true });
+					this.comboId = id;
 					if (!form.isVisible()) {
 						form.show();
 						emptyLayout.hide();
@@ -64,9 +66,15 @@ export default class ProductRegistrationView extends JetView {
 						const form = this.getRoot().queryView({ view: "form" });
 						if (form.validate()) {
 							const values = form.getValues();
-							debugger
-							// goods.add(values);
-							// form.clear();
+							values.proposal_id = this.comboId;
+							values.date_registration = new Date();
+							goods.add(values);
+							const obj = proposals.getItem(this.comboId);
+							obj.date_completed = new Date();
+							obj.status = "completed";
+							proposals.updateItem(this.comboId, obj);
+							webix.message({type:"success", text:"Product was registration."});
+							form.clear();
 						}
 					}
 				},

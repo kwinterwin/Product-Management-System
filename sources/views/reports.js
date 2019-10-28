@@ -53,6 +53,15 @@ export default class ReportsView extends JetView {
             css: "main-layout-toolbar"
         };
 
+        const tabbar = {
+            view: "tabbar",
+            value: "realizingReports",
+            options: [
+                { "id": "realizingReports", "value": "Realizing reports" },
+                { "id": "registrationReports", "value": "Registration Reports" }
+            ]
+        };
+
         const datatable = {
             view: "datatable",
             columns: [
@@ -106,7 +115,35 @@ export default class ReportsView extends JetView {
         return {
             rows: [
                 toolbar,
-                datatable,
+                tabbar,
+                {
+                    rows: [
+                        {
+                            cols: [
+                                {
+                                    view: "button", value: "Export to PDF", click: () => {
+                                        const datatable = this.getRoot().queryView({ view: "datatable" });
+                                        webix.toPDF(datatable, {
+                                            filterHTML: true,
+                                            autowidth: true,
+                                            columns: this.columnsExport
+                                        });
+                                    }
+                                },
+                                {
+                                    view: "button", value: "Export to Excel", click: () => {
+                                        const datatable = this.getRoot().queryView({ view: "datatable" });
+                                        webix.toExcel(datatable, {
+                                            filterHTML: true,
+                                            columns: this.columnsExport
+                                        });
+                                    }
+                                }
+                            ],
+                        },
+                        datatable
+                    ]
+                },
                 template
             ]
         }
@@ -118,22 +155,45 @@ export default class ReportsView extends JetView {
             goods_categories.waitData,
             suppliers.waitData
         ]).then(() => {
-            webix.ajax().get("/server/realize_report").then((result) => {
-                result = result.json();
-                result = result.map((obj) => {
-                    const good_item = goods.getItem(obj.good_id);
-                    if (good_item.hasOwnProperty("id")) {
-                        delete good_item.id;
-                        Object.assign(obj, good_item);
-                    }
-                    obj.category = goods_categories.getItem(obj.category_id).name;
-                    obj.supplier = suppliers.getItem(obj.supplier_id).name;
-                    obj.date_realize = this.formatDate(obj.date_realize);
-                    return obj;
+            const tabbar = this.getRoot().queryView({ view: "tabbar" });
+            const tabbarValue = tabbar.getValue();
+            if(tabbarValue === "realizingReports"){
+                webix.ajax().get("/server/realize_report").then((result) => {
+                    result = result.json();
+                    result = result.map((obj) => {
+                        const good_item = goods.getItem(obj.good_id);
+                        if (good_item.hasOwnProperty("id")) {
+                            delete good_item.id;
+                            Object.assign(obj, good_item);
+                        }
+                        obj.category = goods_categories.getItem(obj.category_id).name;
+                        obj.supplier = suppliers.getItem(obj.supplier_id).name;
+                        obj.date_realize = this.formatDate(obj.date_realize);
+                        return obj;
+                    });
+                    const datatable = this.getRoot().queryView({ view: "datatable" });
+                    datatable.parse(result);
                 });
-                const datatable = this.getRoot().queryView({ view: "datatable" });
-                datatable.parse(result);
-            });
+            }
+            else {
+                webix.ajax().get("/server/realize_report").then((result) => {
+                    // result = result.json();
+                    // result = result.map((obj) => {
+                    //     const good_item = goods.getItem(obj.good_id);
+                    //     if (good_item.hasOwnProperty("id")) {
+                    //         delete good_item.id;
+                    //         Object.assign(obj, good_item);
+                    //     }
+                    //     obj.category = goods_categories.getItem(obj.category_id).name;
+                    //     obj.supplier = suppliers.getItem(obj.supplier_id).name;
+                    //     obj.date_realize = this.formatDate(obj.date_realize);
+                    //     return obj;
+                    // });
+                    // const datatable = this.getRoot().queryView({ view: "datatable" });
+                    // datatable.parse(result);
+                });
+            }
+            
         });
     }
 
