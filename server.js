@@ -82,6 +82,8 @@ app.put("/server/proposals/:id", proposals.updateProposal);
 app.post("/server/realize_report", reports.addRealizeReport);
 app.get("/server/realize_report", reports.getAllRealizeReport);
 
+app.get("/server/registration_report", reports.getAllRegistrationReport);
+
 app.listen(port, () => {
 	console.log("Server was started on 3000 port...");
 });

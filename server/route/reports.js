@@ -21,6 +21,19 @@ let reportsData = {
         });
     },
 
+    getAllRegistrationReport(req, res) {
+        const query = "SELECT * FROM prms.registration_reports";
+        con.con.query(query, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
     addRealizeReport(req, res) {
         const report_data = req.body;
         const query = `INSERT INTO prms.realize_reports (user_id, good_id, count, total_price, date_realize) VALUES
