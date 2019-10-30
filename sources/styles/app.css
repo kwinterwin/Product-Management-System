@@ -125,6 +125,10 @@
 	left    : 325px;
 }
 
+.button-icon button span::before {
+	margin-left: -10px;
+}
+
 .proposal-button-section section i {
 	font-size: 25px !important;
 }

@@ -158,7 +158,16 @@ export default class ReportsView extends JetView {
                         {
                             cols: [
                                 {
-                                    view: "button", value: "Export to PDF", click: () => {
+                                    view: "label",
+                                    label: "You can export data from this datatable into:",
+                                    align: "right"
+                                },
+                                { width: 20 },
+                                {
+                                    view: "button", label: "Export to PDF", type: "icon", css: "button-icon",
+                                    inputWidth: 200, align: "right", width: 200,
+                                    icon: "mdi mdi-file-pdf",
+                                    click: () => {
                                         const datatable = this.getRoot().queryView({ view: "datatable" });
                                         webix.toPDF(datatable, {
                                             filterHTML: true,
@@ -167,8 +176,12 @@ export default class ReportsView extends JetView {
                                         });
                                     }
                                 },
+                                { width: 20 },
                                 {
-                                    view: "button", value: "Export to Excel", click: () => {
+                                    view: "button", label: "Export to Excel", type: "icon", css: "button-icon",
+                                    inputWidth: 200, width: 200,
+                                    icon: "mdi mdi-file-excel",
+                                    click: () => {
                                         const datatable = this.getRoot().queryView({ view: "datatable" });
                                         webix.toExcel(datatable, {
                                             filterHTML: true,
@@ -177,6 +190,7 @@ export default class ReportsView extends JetView {
                                     }
                                 }
                             ],
+                            padding: 10
                         },
                         registration_reports_datatable,
                         realization_reports_datatable
@@ -184,7 +198,7 @@ export default class ReportsView extends JetView {
                 },
                 template
             ]
-        }
+        };
     }
 
     init() {
@@ -193,61 +207,60 @@ export default class ReportsView extends JetView {
             goods_categories.waitData,
             suppliers.waitData
         ]).then(() => {
-            const tabbar = this.getRoot().queryView({ view: "tabbar" });
-            const tabbarValue = tabbar.getValue();
-            if (tabbarValue === "realizingReports") {
-                webix.ajax().get("/server/realize_report").then((result) => {
-                    result = result.json();
-                    result = result.map((obj) => {
-                        const good_item = goods.getItem(obj.good_id);
-                        if (good_item.hasOwnProperty("id")) {
-                            delete good_item.id;
-                            Object.assign(obj, good_item);
-                        }
-                        obj.category = goods_categories.getItem(obj.category_id).name;
-                        obj.supplier = suppliers.getItem(obj.supplier_id).name;
-                        obj.date_realize = this.formatDate(obj.date_realize);
-                        return obj;
-                    });
-                    const realization_reports_datatable = this.getRoot().queryView({ realization_reports_datatable: true });
-                    const registration_reports_datatable = this.getRoot().queryView({ registration_reports_datatable: true });
-                    if (!realization_reports_datatable.isVisible()) {
-                        realization_reports_datatable.show();
-                    }
-                    if (registration_reports_datatable.isVisible()) {
-                        registration_reports_datatable.hide();
-                    }
-                    realization_reports_datatable.parse(result);
-                });
-            }
-            else {
-                webix.ajax().get("/server/registration_report").then((result) => {
-                    result = result.json();
-                    result = result.map((obj) => {
-                        const good_item = goods.getItem(obj.good_id);
-                        if (good_item.hasOwnProperty("id")) {
-                            delete good_item.id;
-                            Object.assign(obj, good_item);
-                        }
-                        users.data.each((user) => {
-                            if (user.user_id === obj.user_id) {
-                                obj.user = user;
-                            }
-                        });
-                        obj.date_registration = this.formatDate(obj.date_registration, true);
-                        return obj;
-                    });
-                    const realization_reports_datatable = this.getRoot().queryView({ realization_reports_datatable: true });
-                    const registration_reports_datatable = this.getRoot().queryView({ registration_reports_datatable: true });
-                    if (!registration_reports_datatable.isVisible()) {
-                        registration_reports_datatable.show();
-                    }
-                    if (realization_reports_datatable.isVisible()) {
-                        realization_reports_datatable.hide();
-                    }
-                    registration_reports_datatable.parse(result);
-                });
-            }
+            this.parseDataInDatatable();
+            // const tabbar = this.getRoot().queryView({ view: "tabbar" });
+            // const tabbarValue = tabbar.getValue();
+            // const realization_reports_datatable = this.getRoot().queryView({ realization_reports_datatable: true });
+            // const registration_reports_datatable = this.getRoot().queryView({ registration_reports_datatable: true });
+            // if (tabbarValue === "realizingReports") {
+            //     webix.ajax().get("/server/realize_report").then((result) => {
+            //         result = result.json();
+            //         result = result.map((obj) => {
+            //             const good_item = goods.getItem(obj.good_id);
+            //             if (good_item.hasOwnProperty("id")) {
+            //                 delete good_item.id;
+            //                 Object.assign(obj, good_item);
+            //             }
+            //             obj.category = goods_categories.getItem(obj.category_id).name;
+            //             obj.supplier = suppliers.getItem(obj.supplier_id).name;
+            //             obj.date_realize = this.formatDate(obj.date_realize);
+            //             return obj;
+            //         });
+            //         if (!realization_reports_datatable.isVisible()) {
+            //             realization_reports_datatable.show();
+            //         }
+            //         if (registration_reports_datatable.isVisible()) {
+            //             registration_reports_datatable.hide();
+            //         }
+            //         realization_reports_datatable.parse(result);
+            //     });
+            // }
+            // else {
+            //     webix.ajax().get("/server/registration_report").then((result) => {
+            //         result = result.json();
+            //         result = result.map((obj) => {
+            //             const good_item = goods.getItem(obj.good_id);
+            //             if (good_item.hasOwnProperty("id")) {
+            //                 delete good_item.id;
+            //                 Object.assign(obj, good_item);
+            //             }
+            //             users.data.each((user) => {
+            //                 if (user.user_id === obj.user_id) {
+            //                     obj.user = user;
+            //                 }
+            //             });
+            //             obj.date_registration = this.formatDate(obj.date_registration, true);
+            //             return obj;
+            //         });
+            //         if (!registration_reports_datatable.isVisible()) {
+            //             registration_reports_datatable.show();
+            //         }
+            //         if (realization_reports_datatable.isVisible()) {
+            //             realization_reports_datatable.hide();
+            //         }
+            //         registration_reports_datatable.parse(result);
+            //     });
+            // }
         });
     }
 
@@ -262,10 +275,11 @@ export default class ReportsView extends JetView {
                     result = result.json();
                     result = result.map((obj) => {
                         const good_item = goods.getItem(obj.good_id);
-                        if (good_item.hasOwnProperty("id")) {
-                            delete good_item.id;
-                            Object.assign(obj, good_item);
-                        }
+                        const resultObj = Object.keys(good_item).reduce(function (obj, k) {
+                            if (k != "id") obj[k] = good_item[k];
+                            return obj;
+                        }, {});
+                        Object.assign(obj, resultObj);
                         obj.category = goods_categories.getItem(obj.category_id).name;
                         obj.supplier = suppliers.getItem(obj.supplier_id).name;
                         obj.date_realize = this.formatDate(obj.date_realize);
@@ -287,10 +301,11 @@ export default class ReportsView extends JetView {
                     result = result.json();
                     result = result.map((obj) => {
                         const good_item = goods.getItem(obj.good_id);
-                        if (good_item.hasOwnProperty("id")) {
-                            delete good_item.id;
-                            Object.assign(obj, good_item);
-                        }
+                        const resultObj = Object.keys(good_item).reduce(function (obj, k) {
+                            if (k != "id") obj[k] = good_item[k];
+                            return obj;
+                        }, {});
+                        Object.assign(obj, resultObj);
                         users.data.each((user) => {
                             if (user.user_id === obj.user_id) {
                                 obj.user = user;
