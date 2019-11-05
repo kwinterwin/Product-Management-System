@@ -29,27 +29,7 @@ export default class ReportsView extends JetView {
 			padding: 20,
 			elements: [
 				{ view: "icon", icon: "mdi mdi-clipboard-text", css: "mdi-toolbar-icons", width: 70, height: 40 },
-				{ view: "label", label: _("Reports"), align: "left" },
-				{
-					view: "button", value: "Export to PDF", click: () => {
-						const datatable = this.getRoot().queryView({ view: "datatable" });
-
-						webix.toPDF(datatable, {
-							filterHTML: true,
-							autowidth: true,
-							columns: this.columnsExport
-						});
-					}
-				},
-				{
-					view: "button", value: "Export to Excel", click: () => {
-						const datatable = this.getRoot().queryView({ view: "datatable" });
-						webix.toExcel(datatable, {
-							filterHTML: true,
-							columns: this.columnsExport
-						});
-					}
-				}
+				{ view: "label", label: _("Reports"), align: "left" }
 			],
 			css: "main-layout-toolbar"
 		};
@@ -83,13 +63,13 @@ export default class ReportsView extends JetView {
 			],
 			onClick: {
 				"mdi-file-pdf": (event, item) => {
-					const template = this.getRoot().queryView({ view: "template" });
-					const datatable = this.getRoot().queryView({ view: "datatable" });
-					const report = datatable.getItem(item.row);
-					template.parse(report);
-					webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
-					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
-					// this.addNewSupplierPopup.show(supplier);
+					// const template = this.getRoot().queryView({ view: "template" });
+					// const datatable = this.checkVisibleTable();
+					// if (datatable) {
+					// 	const report = datatable.getItem(item.row);
+					// 	template.parse(report);
+					// 	webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
+					// }
 				},
 				"mdi-eye": (event, item) => {
 					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
@@ -112,13 +92,13 @@ export default class ReportsView extends JetView {
 			],
 			onClick: {
 				"mdi-file-pdf": (event, item) => {
-					const template = this.getRoot().queryView({ view: "template" });
-					const datatable = this.getRoot().queryView({ view: "datatable" });
-					const report = datatable.getItem(item.row);
-					template.parse(report);
-					webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
-					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
-					// this.addNewSupplierPopup.show(supplier);
+					// const template = this.getRoot().queryView({ view: "template" });
+					// const datatable = this.checkVisibleTable();
+					// if (datatable) {
+					// 	const report = datatable.getItem(item.row);
+					// 	template.parse(report);
+					// 	webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
+					// }
 				},
 				"mdi-eye": (event, item) => {
 					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
@@ -168,12 +148,14 @@ export default class ReportsView extends JetView {
 									inputWidth: 200, align: "right", width: 200,
 									icon: "mdi mdi-file-pdf",
 									click: () => {
-										const datatable = this.getRoot().queryView({ view: "datatable" });
-										webix.toPDF(datatable, {
-											filterHTML: true,
-											autowidth: true,
-											columns: this.columnsExport
-										});
+										const datatable = this.checkVisibleTable();
+										if (datatable) {
+											webix.toPDF(datatable, {
+												filterHTML: true,
+												autowidth: true,
+												columns: this.columnsExport
+											});
+										}
 									}
 								},
 								{ width: 20 },
@@ -182,11 +164,13 @@ export default class ReportsView extends JetView {
 									inputWidth: 200, width: 200,
 									icon: "mdi mdi-file-excel",
 									click: () => {
-										const datatable = this.getRoot().queryView({ view: "datatable" });
-										webix.toExcel(datatable, {
-											filterHTML: true,
-											columns: this.columnsExport
-										});
+										const datatable = this.checkVisibleTable();
+										if (datatable) {
+											webix.toExcel(datatable, {
+												filterHTML: true,
+												columns: this.columnsExport
+											});
+										}
 									}
 								}
 							],
@@ -209,6 +193,18 @@ export default class ReportsView extends JetView {
 		]).then(() => {
 			this.parseDataInDatatable();
 		});
+	}
+
+	checkVisibleTable() {
+		const realization_reports_datatable = this.getRoot().queryView({ realization_reports_datatable: true });
+		const registration_reports_datatable = this.getRoot().queryView({ registration_reports_datatable: true });
+		if (realization_reports_datatable.isVisible()) {
+			return realization_reports_datatable;
+		}
+		else if (registration_reports_datatable.isVisible()) {
+			return registration_reports_datatable;
+		}
+		else return false;
 	}
 
 	parseDataInDatatable() {
@@ -277,7 +273,7 @@ export default class ReportsView extends JetView {
 		const date = new Date(Date.parse(isoDate));
 		if (isReturnStringFormat)
 			return date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-"
-                + date.getUTCDate() + " " + date.getUTCHours() + ":" + date.getUTCMinutes() + ":" + date.getUTCSeconds();
+				+ date.getUTCDate() + " " + date.getUTCHours() + ":" + date.getUTCMinutes() + ":" + date.getUTCSeconds();
 		else return date;
 	}
 

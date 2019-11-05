@@ -40,5 +40,9 @@ export default {
     "Change": "Change",
     "Change supplier information": "Change supplier information",
     "Contact information": "Contact information",
-    "Sign in":"Sign in"
+    "Sign in":"Sign in",
+
+    "Good's categories":"Good's categories",
+    "Products by categories":"Products by categories",
+    "Product's placement":"Product's placement"
 };
