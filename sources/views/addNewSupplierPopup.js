@@ -30,12 +30,12 @@ export default class NewSupplierPopupView extends JetView {
 			label: _("Basic information of supplier"),
 			body: {
 				rows: [
-					{ view: "text", label: _("Supplier name"), name: "supplier_name", labelWidth: 170, required: true },
+					{ view: "text", label: _("Supplier name"), name: "supplier_name", labelWidth: 210, required: true },
 					{
 						cols: [
-							{ view: "text", label: _("TIN"), name: "tin", required: true, labelWidth: 90 },
+							{ view: "text", label: _("TIN"), name: "tin", required: true, labelWidth: 140 },
 							{ width: 10 },
-							{ view: "text", label: _("Checkpoint"), name: "checkpoint", labelWidth: 100, required: true }
+							{ view: "text", label: _("Checkpoint"), name: "checkpoint", labelWidth: 140, required: true }
 						]
 					},
 					{ view: "textarea", label: _("Address"), name: "address", height: 100, required: true }
@@ -50,7 +50,7 @@ export default class NewSupplierPopupView extends JetView {
 				rows: [
 					{
 						cols: [
-							{ view: "text", label: _("Surname"), name: "surname", required: true },
+							{ view: "text", label: _("Surname"), name: "surname", required: true, labelWidth:90 },
 							{ width: 5 },
 							{ view: "text", label: _("Name"), labelWidth: 60, name: "name", required: true },
 							{ width: 5 },
@@ -60,11 +60,11 @@ export default class NewSupplierPopupView extends JetView {
 					{ height: 10 },
 					{
 						cols: [
-							{ view: "text", label: _("Phone"), labelWidth: 60, name: "phone", required: true, pattern: { mask: "+###-## ###-##-##" } },
+							{ view: "text", label: _("Phone"), labelWidth: 90, name: "phone", required: true, pattern: { mask: "+###-## ###-##-##" } },
 							{ width: 5 },
 							{ view: "text", label: _("E-mail"), labelWidth: 60, name: "email" },
 							{ width: 5 },
-							{ view: "text", label: _("Fax"), labelWidth: 60, name: "fax" }
+							{ view: "text", label: _("Fax"), labelWidth: 100, name: "fax" }
 						]
 					}
 				]
