@@ -23,12 +23,12 @@ export default class SupplierInformationPopupView extends JetView {
             template: (obj) => {
                 return `
                     <section class="supplierInformation">
-                        <h3><i class="mdi mdi-information-outline"></i> General supplier's information</h3>
-                        <p>Supplier's name: ${obj.supplier_name}</p>
-                        <p>TIN: ${obj.tin}</p>
-                        <p>Checkpoint: ${obj.checkpoint}</p>
-                        <p>Address: ${obj.address}</p>
-                        <h3><i class="mdi mdi-information-outline"></i> Contact supplier's information</h3>
+                        <h3><i class="mdi mdi-information-outline"></i> ${_("General supplier's information")}</h3>
+                        <p>${_("Supplier name")}: ${obj.supplier_name}</p>
+                        <p>${_("TIN")}: ${obj.tin}</p>
+                        <p>${_("Checkpoint")}: ${obj.checkpoint}</p>
+                        <p>${_("Address")}: ${obj.address}</p>
+                        <h3><i class="mdi mdi-information-outline"></i> ${_("Contact supplier's information")}</h3>
                         <p><i class="mdi mdi-account"></i> ${obj.surname + " " + obj.name + " " + obj.patronymic}</p>
                         <p><i class="mdi mdi-phone-settings"></i> ${obj.phone}</p>
                         <p><i class="mdi mdi-at"></i> ${obj.email || ""}</p>

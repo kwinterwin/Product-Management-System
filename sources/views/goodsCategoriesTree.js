@@ -26,23 +26,23 @@ export default class GoodsCategoriesTreeView extends JetView {
 					const context = webix.$$("contextmenu-mine");
 
 					if (value.$parent === 0) {
-						if (context.isItemEnabled("Delete")) {
-							context.disableItem("Delete");
+						if (context.isItemEnabled(_("Delete"))) {
+							context.disableItem(_("Delete"));
 						}
 					}
 					else {
-						if (!context.isItemEnabled("Delete")) {
-							context.enableItem("Delete");
+						if (!context.isItemEnabled(_("Delete"))) {
+							context.enableItem(_("Delete"));
 						}
 					}
 					if (value.$level > 2) {
-						if (context.isItemEnabled("Add")) {
-							context.disableItem("Add");
+						if (context.isItemEnabled(_("Add"))) {
+							context.disableItem(_("Add"));
 						}
 					}
 					else {
-						if (!context.isItemEnabled("Add")) {
-							context.enableItem("Add");
+						if (!context.isItemEnabled(_("Add"))) {
+							context.enableItem(_("Add"));
 						}
 					}
 					this.selectTreeItemId = id;
@@ -56,7 +56,7 @@ export default class GoodsCategoriesTreeView extends JetView {
 		const addedForm = {
 			view: "form",
 			elements: [
-				{ view: "richselect", labelWidth: 150, label: _("Parent category"), options: { body: { data: goods_categories, template: "#name#" } }, disabled: true, name: "parent" },
+				{ view: "richselect", labelWidth: 200, label: _("Parent category"), options: { body: { data: goods_categories, template: "#name#" } }, disabled: true, name: "parent" },
 				{ view: "text", label: _("Category's name"), labelWidth: 150, required: true, name: "name" },
 				{
 					view: "button", value: _("Save"), inputWidth: 200, align: "right", click: () => {
@@ -126,15 +126,16 @@ export default class GoodsCategoriesTreeView extends JetView {
 	}
 
 	ready() {
+		const _ = this.app.getService("locale")._;
 		const tree = this.getRoot().queryView({ view: "tree" });
 		this.ui({
 			view: "contextmenu",
 			id: "contextmenu-mine",
-			data: ["Add", { $template: "Separator" }, "Delete"],
+			data: [_("Add"), { $template: "Separator" }, _("Delete")],
 			on: {
 				onItemClick: (id) => {
 					const value = webix.$$("contextmenu-mine").getItem(id).value;
-					if (value === "Add") {
+					if (value === _("Add")) {
 						const layout = this.getRoot().queryView({ addedCategoryLayout: true });
 						const form = this.getRoot().queryView({ view: "form" });
 						form.clear();
@@ -146,7 +147,7 @@ export default class GoodsCategoriesTreeView extends JetView {
 							this.getRoot().queryView({ view: "richselect" }).setValue(this.selectTreeItemId);
 						}
 					}
-					else if (value === "Delete") {
+					else if (value === _("Delete")) {
 						goods_categories.remove(this.selectTreeItemId);
 						this.getRoot().queryView({ view: "tree" }).remove(this.selectTreeItemId);
 					}

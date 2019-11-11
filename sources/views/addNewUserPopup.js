@@ -38,7 +38,7 @@ export default class UserPopupView extends JetView {
 				{ view: "text", label: _("Login"), name: "login", labelWidth: 150, required: true },
 				{ view: "text", label: _("Password"), name: "password", labelWidth: 150, required: true, type: "password", },
 				{
-					view: "button", value: "Save", inputWidth: 200, align: "right",
+					view: "button", value: _("Save"), inputWidth: 200, align: "right",
 					click: () => {
 						const form = this.getRoot().queryView({ view: "form" });
 						debugger
@@ -93,7 +93,7 @@ export default class UserPopupView extends JetView {
                             <div class="form-group">
                                 <label class="label">
                                     <i class="mdi mdi-camera"></i>
-                                    <span class="title">Change avatar</span>
+                                    <span class="title">${_("Change avatar")}</span>
                                     <input type="file" accept="image/*">
                                 </label>
                             </div>

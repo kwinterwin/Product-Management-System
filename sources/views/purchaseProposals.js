@@ -18,56 +18,56 @@ export default class PurchaseProposalsView extends JetView {
                         return `
                         <div class='overall proposals accepted'>
                            <div>
-                                <p>Name: ${obj.name}</p>
-                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
-                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
-                                <p>Count: ${obj.count}</p>
-                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
-                                <p>Accepted date: ${this.formatDate(new Date(Date.parse(obj.date_approve)))}</p>
+                                <p>${_("Good's name")}: ${obj.name}</p>
+                                <p>${_("Supplier")}: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>${_("Category")}: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>${_("Count")}: ${obj.count}</p>
+                                <p>${_("Date of proposal's registration")}: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                                <p>${_("Accepted date")}: ${this.formatDate(new Date(Date.parse(obj.date_approve)))}</p>
                            </div>
                            <div class="proposal-button-section">
-                                <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
+                                <section><i class="mdi mdi-autorenew" title=${_("Send to unreviewed proposals")}></i></section>
                            </div>
                         </div>`;
                     else if (obj.status === "rejected")
                         return `
                         <div class='overall proposals rejected'>
                            <div>
-                                <p>Name: ${obj.name}</p>
-                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
-                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
-                                <p>Count: ${obj.count}</p>
-                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                                <p>${_("Good's name")}: ${obj.name}</p>
+                                <p>${_("Supplier")}: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>${_("Category")}: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>${_("Count")}: ${obj.count}</p>
+                                <p>${_("Date of proposal's registration")}: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
                            </div>
                            <div class="proposal-button-section">
-                                <section><i class="mdi mdi-autorenew" title="Send to unreviewed proposals"></i></section>
+                                <section><i class="mdi mdi-autorenew" title=${_("Send to unreviewed proposals")}></i></section>
                            </div>
                         </div>`;
                     else if (obj.status === "completed")
                         return `
                         <div class='overall proposals completed'>
                            <div>
-                                <p>Name: ${obj.name}</p>
-                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
-                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
-                                <p>Count: ${obj.count}</p>
-                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
-                                <p>Date of proposal's completed: ${this.formatDate(new Date(Date.parse(obj.date_completed)))}</p>
+                                <p>${_("Good's name")}: ${obj.name}</p>
+                                <p>${_("Supplier")}: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>${_("Category")}: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>${_("Count")}: ${obj.count}</p>
+                                <p>${_("Date of proposal's registration")}: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                                <p>${_("Date of proposal's completed")}: ${this.formatDate(new Date(Date.parse(obj.date_completed)))}</p>
                            </div>
                         </div>`;
                     else
                         return `
                         <div class='overall proposals'>
                            <div>
-                                <p>Name: ${obj.name}</p>
-                                <p>Supplier: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
-                                <p>Category: ${goods_categories.getItem(obj.category_id).name}</p>
-                                <p>Count: ${obj.count}</p>
-                                <p>Date of proposal's registration: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
+                                <p>${_("Good's name")}: ${obj.name}</p>
+                                <p>${_("Supplier")}: ${suppliers.getItem(obj.supplier_id).supplier_name}</p>
+                                <p>${_("Category")}: ${goods_categories.getItem(obj.category_id).name}</p>
+                                <p>${_("Count")}: ${obj.count}</p>
+                                <p>${_("Date of proposal's registration")}: ${this.formatDate(new Date(Date.parse(obj.date_registration)))}</p>
                            </div>
                            <div class="proposal-button-section">
-                                <section><i class="mdi mdi-close" title="Rejected proposal"></i></section>
-                                <section><i class="mdi mdi-check" title="Accepted proposal"></i></section>
+                                <section><i class="mdi mdi-close" title=${_("Rejected proposal")}></i></section>
+                                <section><i class="mdi mdi-check" title=${_("Accepted proposal")}></i></section>
                            </div>
                         </div>`;
 

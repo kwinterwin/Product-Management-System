@@ -8,7 +8,7 @@ export default class SettingsView extends JetView {
         const localization = {
             name: "lang", optionWidth: 120, view: "segmented", label: _("Language"), options: [
                 { id: "en", value: "English" },
-                { id: "ru", value: "Russian" }
+                { id: "ru", value: _("Russian") }
             ], click: () => this.toggleLanguage(), value: lang
         };
 
