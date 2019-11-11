@@ -40,10 +40,14 @@ let proposalsData = {
 
     updateProposal(req, res) {
         const proposal = req.body;
+        if (proposal.date_completed) {
+            proposal.date_completed = formatDate(proposal.date_completed);
+        }
         const query = `Update prms.proposals set name = "${proposal.name}", user_id = ${proposal.user_id}, category_id = ${proposal.category_id}, 
-                            count = ${proposal.count}, supplier_id = ${proposal.supplier_id}, date_registration = "${formatDate(proposal.date_registration)}",
+                            count = ${proposal.count}, supplier_id = ${proposal.supplier_id},
+                            date_registration = "${formatDate(proposal.date_registration)}",
                             status = "${proposal.status}", date_approve = "${formatDate(proposal.date_approve)}" 
-                            ${proposal.date_completed ? ",date_completed = '${formatDate(proposal.date_completed)}'" : ""} where id = ${ proposal.id}
+                            ${proposal.date_completed ? (",date_completed = '" + proposal.date_completed + "'") : ""} where id = ${proposal.id}
         `;
         con.con.query(query, (err, result) => {
             if (err) {
