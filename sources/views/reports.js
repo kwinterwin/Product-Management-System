@@ -8,17 +8,27 @@ import TableReportPopup from "./tableReportPopup";
 export default class ReportsView extends JetView {
 	constructor(app, name) {
 		super(app, name);
-		this.columnsExport = {
+		this.columnsExportRealization = {
 			"name": { id: "name", header: "Product" },
 			"articul": { id: "articul", header: "Article" },
 			"brand": { id: "brand", header: "Brand" },
-			"category": { d: "category", header: "Category" },
+			"category": { id: "category", header: "Category" },
 			"manuf_country": { id: "manuf_country", header: "Manufactured country" },
 			"date_realize": { id: "date_realize", header: "Date of realization" },
 			"supplier": { id: "supplier", header: "Supplier" },
 			"barcode": { id: "barcode", header: "Barcode" },
 			"count": { id: "count", header: "Count" },
 			"total_price": { id: "total_price", header: "Total price" }
+		};
+		this.columnsExportRegistration = {
+			"name": { id: "name", header: "Product" },
+			"articul": { id: "articul", header: "Article" },
+			"brand": { id: "brand", header: "Brand" },
+			"manuf_country": { id: "manuf_country", header: "Manufactured country" },
+			"date_registration": { id: "date_registration", header: "Date of registration" },
+			"barcode": { id: "barcode", header: "Barcode" },
+			"total_count": { id: "total_count", header: "Total Count" },
+			"price": { id: "price", header: "Price" }
 		};
 	}
 
@@ -114,11 +124,18 @@ export default class ReportsView extends JetView {
 									icon: "mdi mdi-file-pdf",
 									click: () => {
 										const datatable = this.checkVisibleTable();
-										if (datatable) {
+										if (datatable.config.realization_reports_datatable) {
 											webix.toPDF(datatable, {
 												filterHTML: true,
 												autowidth: true,
-												columns: this.columnsExport
+												columns: this.columnsExportRealization
+											});
+										}
+										else {
+											webix.toPDF(datatable, {
+												filterHTML: true,
+												autowidth: true,
+												columns: this.columnsExportRegistration
 											});
 										}
 									}
@@ -130,10 +147,18 @@ export default class ReportsView extends JetView {
 									icon: "mdi mdi-file-excel",
 									click: () => {
 										const datatable = this.checkVisibleTable();
-										if (datatable) {
+										if (datatable.config.realization_reports_datatable) {
 											webix.toExcel(datatable, {
 												filterHTML: true,
-												columns: this.columnsExport
+												autowidth: true,
+												columns: this.columnsExportRealization
+											});
+										}
+										else {
+											webix.toExcel(datatable, {
+												filterHTML: true,
+												autowidth: true,
+												columns: this.columnsExportRegistration
 											});
 										}
 									}
