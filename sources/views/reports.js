@@ -3,21 +3,32 @@ import { goods } from "../models/goods";
 import { goods_categories } from "../models/goods_categories";
 import { suppliers } from "../models/suppliers";
 import { users } from "../models/users";
+import TableReportPopup from "./tableReportPopup";
 
 export default class ReportsView extends JetView {
 	constructor(app, name) {
 		super(app, name);
-		this.columnsExport = {
+		this.columnsExportRealization = {
 			"name": { id: "name", header: "Product" },
 			"articul": { id: "articul", header: "Article" },
 			"brand": { id: "brand", header: "Brand" },
-			"category": { d: "category", header: "Category" },
+			"category": { id: "category", header: "Category" },
 			"manuf_country": { id: "manuf_country", header: "Manufactured country" },
 			"date_realize": { id: "date_realize", header: "Date of realization" },
 			"supplier": { id: "supplier", header: "Supplier" },
 			"barcode": { id: "barcode", header: "Barcode" },
 			"count": { id: "count", header: "Count" },
 			"total_price": { id: "total_price", header: "Total price" }
+		};
+		this.columnsExportRegistration = {
+			"name": { id: "name", header: "Product" },
+			"articul": { id: "articul", header: "Article" },
+			"brand": { id: "brand", header: "Brand" },
+			"manuf_country": { id: "manuf_country", header: "Manufactured country" },
+			"date_registration": { id: "date_registration", header: "Date of registration" },
+			"barcode": { id: "barcode", header: "Barcode" },
+			"total_count": { id: "total_count", header: "Total Count" },
+			"price": { id: "price", header: "Price" }
 		};
 	}
 
@@ -58,22 +69,15 @@ export default class ReportsView extends JetView {
 				{ id: "articul", header: "Article", adjust: true },
 				{ id: "count", header: "Count", adjust: true },
 				{ id: "total_price", header: "Total price", adjust: true },
-				{ id: "pdfExport", header: "", template: "<i class='mdi mdi-file-pdf'></i>", width: 40 },
 				{ id: "viewInfo", header: "", template: "<i class='mdi mdi-eye'></i>", width: 40 }
 			],
 			onClick: {
-				"mdi-file-pdf": (event, item) => {
-					// const template = this.getRoot().queryView({ view: "template" });
-					// const datatable = this.checkVisibleTable();
-					// if (datatable) {
-					// 	const report = datatable.getItem(item.row);
-					// 	template.parse(report);
-					// 	webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
-					// }
-				},
 				"mdi-eye": (event, item) => {
-					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
-					// this.viewSupplierInformation.show(supplier);
+					const datatable = this.checkVisibleTable();
+					if (datatable) {
+						const report = datatable.getItem(item.row);
+						this.informationPopup.show(report, true);
+					}
 				}
 			}
 		};
@@ -85,47 +89,18 @@ export default class ReportsView extends JetView {
 			columns: [
 				{ id: "name", header: "Product", fillspace: true },
 				{ id: "articul", header: "Article", adjust: true },
-				{ id: "count", header: "Count", adjust: true },
-				{ id: "total_price", header: "Total price", adjust: true },
-				{ id: "pdfExport", header: "", template: "<i class='mdi mdi-file-pdf'></i>", width: 40 },
+				{ id: "total_count", header: "Count", adjust: true },
+				{ id: "price", header: "Total price", adjust: true },
 				{ id: "viewInfo", header: "", template: "<i class='mdi mdi-eye'></i>", width: 40 }
 			],
 			onClick: {
-				"mdi-file-pdf": (event, item) => {
-					// const template = this.getRoot().queryView({ view: "template" });
-					// const datatable = this.checkVisibleTable();
-					// if (datatable) {
-					// 	const report = datatable.getItem(item.row);
-					// 	template.parse(report);
-					// 	webix.toPDF(template, { display: "image", filename: `Report №${report.id}` });
-					// }
-				},
 				"mdi-eye": (event, item) => {
-					// const supplier = this.getRoot().queryView({ view: "datatable" }).getItem(item.row);
-					// this.viewSupplierInformation.show(supplier);
+					const datatable = this.checkVisibleTable();
+					if (datatable) {
+						const report = datatable.getItem(item.row);
+						this.informationPopup.show(report, false);
+					}
 				}
-			}
-		};
-
-		const template = {
-			view: "template",
-			hidden: true,
-			css: "pdfTemplate",
-			borderless: true,
-			template: (obj) => {
-				return `
-                    <h3 style="text-align:center">Report about product realization</h3>
-                    <p>Product: ${obj.name}:</p>
-                    <p>Article: ${obj.articul}</p>
-                    <p>Brand: ${obj.brand}</p>
-                    <p>Category: ${obj.category}</p>
-                    <p>Manufactured country: ${obj.manuf_country}</p>
-                    <p>Date of realization: ${this.formatDate(obj.date_realize, true)}</p>
-                    <p>Supplier: ${obj.supplier}</p>
-                    <p>Barcode: ${obj.barcode}</p>
-                    <p>Count: ${obj.count}</p>
-                    <p>Total price: ${obj.total_price}</p>
-                `;
 			}
 		};
 
@@ -139,36 +114,51 @@ export default class ReportsView extends JetView {
 							cols: [
 								{
 									view: "label",
-									label: "You can export data from this datatable into:",
+									label: _("You can export data from this datatable into:"),
 									align: "right"
 								},
 								{ width: 20 },
 								{
-									view: "button", label: "Export to PDF", type: "icon", css: "button-icon",
+									view: "button", label: _("Export to PDF"), type: "icon", css: "button-icon",
 									inputWidth: 200, align: "right", width: 200,
 									icon: "mdi mdi-file-pdf",
 									click: () => {
 										const datatable = this.checkVisibleTable();
-										if (datatable) {
+										if (datatable.config.realization_reports_datatable) {
 											webix.toPDF(datatable, {
 												filterHTML: true,
 												autowidth: true,
-												columns: this.columnsExport
+												columns: this.columnsExportRealization
+											});
+										}
+										else {
+											webix.toPDF(datatable, {
+												filterHTML: true,
+												autowidth: true,
+												columns: this.columnsExportRegistration
 											});
 										}
 									}
 								},
 								{ width: 20 },
 								{
-									view: "button", label: "Export to Excel", type: "icon", css: "button-icon",
+									view: "button", label: _("Export to Excel"), type: "icon", css: "button-icon",
 									inputWidth: 200, width: 200,
 									icon: "mdi mdi-file-excel",
 									click: () => {
 										const datatable = this.checkVisibleTable();
-										if (datatable) {
+										if (datatable.config.realization_reports_datatable) {
 											webix.toExcel(datatable, {
 												filterHTML: true,
-												columns: this.columnsExport
+												autowidth: true,
+												columns: this.columnsExportRealization
+											});
+										}
+										else {
+											webix.toExcel(datatable, {
+												filterHTML: true,
+												autowidth: true,
+												columns: this.columnsExportRegistration
 											});
 										}
 									}
@@ -179,8 +169,7 @@ export default class ReportsView extends JetView {
 						registration_reports_datatable,
 						realization_reports_datatable
 					]
-				},
-				template
+				}
 			]
 		};
 	}
@@ -193,6 +182,7 @@ export default class ReportsView extends JetView {
 		]).then(() => {
 			this.parseDataInDatatable();
 		});
+		this.informationPopup = this.ui(TableReportPopup);
 	}
 
 	checkVisibleTable() {
