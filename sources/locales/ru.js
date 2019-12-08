@@ -79,5 +79,14 @@ export default {
     "Position":"Должность",
     "Change avatar":"",
     "Change user information":"Изменить информацию о пользователе",
-    "Russian":"Русский"
+    "Russian":"Русский",
+    "Product's name":"Наименование",
+    "Compose":"Отправить",
+    "Please, choose number of good's proposal":"Пожалуйста, выберите номер заявки на товар",
+    "You can enter barcode of product":"Вы можете ввести штрих-код продукта",
+    "The deal isn't registered.":"Сделка не зарегистрирована!",
+    "The deal is registered. A report about it can be seen in the 'Reports' section.":"Сделка зарегистрирована.",
+    "The entered quantity is more than stored in the warehouse!":"Введенное количество больше, чем хранится на складе!",
+    "The quantity of goods cannot be a fractional number.":"Количество товаров не может быть дробным числом.",
+    "Enter count of realizing product":"Введите количество реализуемого продукта"
 };

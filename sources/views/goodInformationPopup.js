@@ -31,8 +31,8 @@ export default class GoodInformationPopupView extends JetView {
                         <p><b>${_("Article")}:</b> ${obj.articul}</p>
                         <p><b>${_("Price")}:</b> ${obj.price} BYN</p>
                         <p><b>${_("Brand")}:</b> ${obj.brand}</p>
-                        <p><b>${_("Category")}:</b> ${goods_categories.getItem(obj.category).name}</p>
-                        <p><b>${_("Count")}:</b> ${obj.count}</p>
+                        <p><b>${_("Category")}:</b> ${goods_categories.getItem(obj.category_id).name}</p>
+                        <p><b>${_("Count")}:</b> ${obj.total_count}</p>
                     </div>
                 `;
                 else return "";

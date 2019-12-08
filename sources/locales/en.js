@@ -79,6 +79,16 @@ export default {
     "Position":"Position",
     "Change avatar":"Change avatar",
     "Change user information":"Change user information",
-    "Russian":"Russian"
+    "Russian":"Russian",
+    "Product's name":"Product's name",
+    "Compose":"Compose",
+    "Please, choose number of good's proposal":"Please, choose number of good's proposal",
+    "You can enter barcode of product":"You can enter barcode of product",
+
+    "The deal isn't registered.":"The deal isn't registered.",
+    "The deal is registered. A report about it can be seen in the 'Reports' section.":"The deal is registered. A report about it can be seen in the 'Reports' section.",
+    "The entered quantity is more than stored in the warehouse!":"The entered quantity is more than stored in the warehouse!",
+    "The quantity of goods cannot be a fractional number.":"The quantity of goods cannot be a fractional number.",
+    "Enter count of realizing product":"Enter count of realizing product"
 
 };

@@ -31,6 +31,7 @@ con.connect((err) => {
 });
 
 app.use("/server", express.static("uploads"));
+app.use("/server", express.static("node_modules"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
 	secret: "replace this string... k12jh40918e4019u3",

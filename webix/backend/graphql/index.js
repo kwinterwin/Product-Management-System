@@ -39,7 +39,7 @@ const resolvers = {
 		},
 		getCategories: async (root, args) => {
 			let data = await categories.findAsync({ parent: args.id });
-			data = data.map(a => { 
+			data = data.sort((a,b) => a.name > b.name ? 1 : -1).map(a => { 
 				a.id = a._id; 
 				return a; 
 			});
@@ -47,7 +47,7 @@ const resolvers = {
 		},
 		getAllProducts: async () => {
 			let data = await products.findAsync({});
-			data = data.map(a => {
+			data = data.sort((a,b) => a.name > b.name ? 1 : -1).map(a => {
 				a.packages = async () => resolvers.Query.getProduct(null, { product: a.id });
 				a.id = a._id;
 				return a;
@@ -56,7 +56,7 @@ const resolvers = {
 		},
 		getAllPackages: async (root, args) => {
 			let data = await packages.findAsync(args.product ? { product_id: args.product} : {});
-			data = data.map(a => { 
+			data = data.sort((a,b) => a.url > b.url ? 1 : -1).map(a => { 
 				a.id = a._id; 
 				return a; 
 			});

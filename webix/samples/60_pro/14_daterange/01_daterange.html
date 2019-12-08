@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="../../../codebase/webix.css?v=7.0.2" type="text/css"   charset="utf-8">
-		<script src="../../../codebase/webix.js?v=7.0.2" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../../codebase/webix.css?v=7.1.0" type="text/css"   charset="utf-8">
+		<script src="../../../codebase/webix.js?v=7.1.0" type="text/javascript" charset="utf-8"></script>
 		<style>
 			#areaA, #areaB{
 				margin: 30px;
@@ -23,8 +23,12 @@
 		
 		webix.ui({
 			container:"areaA",
-			view:"daterange"
-		});	
+			view:"daterange",
+			value:{
+				start: new Date(2024,6,12), 
+				end: new Date(2024,6,12)
+			}
+		});
 
 		webix.ui({
 			container:"areaB",
@@ -33,8 +37,8 @@
 			icons:true,
 			timepicker:true,
 			value:{
-				start: new Date(), 
-				end: webix.Date.add(new Date(), 2, "month")
+				start: new Date(2024,6,12), 
+				end: new Date(2024,8,12)
 			}
 		});	
 

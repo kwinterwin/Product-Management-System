@@ -4,8 +4,8 @@
     <title>Tooltip:: Controls</title>
     <meta  name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 
-    <script type="text/javascript" src="../../codebase/webix.js?v=7.0.2"></script>
-    <link rel="stylesheet" type="text/css" href="../../codebase/webix.css?v=7.0.2">
+    <script type="text/javascript" src="../../codebase/webix.js?v=7.1.0"></script>
+    <link rel="stylesheet" type="text/css" href="../../codebase/webix.css?v=7.1.0">
 
     <style>
         #areaA{
@@ -30,8 +30,8 @@
                     { view:"combo",options:cities, label:"To", placeholder:"Select destination", tooltip:function(obj){
                     	return obj.placeholder;
                     }},
-                    {view:"datepicker",  label:"Departure Date", value:new Date(), format:"%d  %M %Y", tooltip:"#label# #value#"},
-                    {view:"datepicker",  id:"datepicker2", label:"Return Date", value:new Date(), format:"%d  %M %Y", tooltip:function(obj){
+                    {view:"datepicker",  label:"Departure Date", value:new Date(2024,6,12), format:"%d  %M %Y", tooltip:"#label# #value#"},
+                    {view:"datepicker",  id:"datepicker2", label:"Return Date", value:new Date(2024,6,12), format:"%d  %M %Y", tooltip:function(obj){
                     	return webix.i18n.parseFormatStr(obj.value);
                     }},
                     {view:"checkbox", id:"flexible", value:0, label: "Flexible dates", inputWidth:160, tooltip:{ template:"#value#", dx:0, dy:-30}},

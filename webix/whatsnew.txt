@@ -1,21 +1,13 @@
-Version 7.0.2 (October 2019)
+Version 7.1.0 (December 2019)
 ==============================
 
-### Fixes
+### Major features
 
-- closing active tab in tabbar result in error
-- rendering issues with center and right align of the combo
-- regression in horizontal scroll of the tree
-- incorrect width of multicombo in some cases
+- Filter widget
+- TextHighlight widget
+- Improved behaviors on touch devices
 
-
-Version 7.0.1 (September 2019)
-==============================
-
-### Fixes
-
-- regression in drag files on uploader button
-- incorrect processing of text drop on uploader area
+[Full list of changes and fixes](https://docs.webix.com/desktop__whats_new_7_1.html)
 
 
 Version 7.0.0 (September 2019)

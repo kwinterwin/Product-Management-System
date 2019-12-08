@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-	<link rel="stylesheet" href="../../codebase/webix.css?v=7.0.2" type="text/css"   charset="utf-8">
-	<script src="../../codebase/webix.js?v=7.0.2" type="text/javascript" charset="utf-8"></script>
-	<script src="./data.js?v=7.0.2" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/webix.css?v=7.1.0" type="text/css"   charset="utf-8">
+	<script src="../../codebase/webix.js?v=7.1.0" type="text/javascript" charset="utf-8"></script>
+	<script src="./data.js?v=7.1.0" type="text/javascript" charset="utf-8"></script>
 
 	<title>TimeLine::API</title>
 </head>
@@ -36,7 +36,7 @@
 						}},
 						{ view:"button", css:"webix_primary", width:200, value:"Add new", click:function(){
 							$$("timeline").add({
-								date:new Date(),
+								date:new Date(2024,6,12),
 								value:"Test",
 								details:webix.uid()
 							});

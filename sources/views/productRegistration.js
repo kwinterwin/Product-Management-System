@@ -15,8 +15,8 @@ export default class ProductRegistrationView extends JetView {
 
 		const registrationCombo = {
 			view: "combo",
-			label: "Please, choose number of good's proposal",
-			labelWidth: 300,
+			label: _("Please, choose number of good's proposal"),
+			labelWidth: 350,
 			options: {
 				body: {
 					template: "#id#"
@@ -47,12 +47,12 @@ export default class ProductRegistrationView extends JetView {
 				{ view: "text", label: _("Сountry of production"), name: "manuf_country", labelWidth: 200, required: true },
 				{
 					cols: [
-						{ view: "counter", label: _("Price"), name: "price", labelWidth: 200, required: true },
+						{ view: "text", label: _("Price"), name: "price", labelWidth: 200, required: true },
 						{ view: "label", label: "$", css: "dollar-label" }
 					],
 					css: "productRegistrationLayout"
 				},
-				{ view: "text", label: _("Barcode (13)"), name: "barcode", labelWidth: 200, required: true },
+				{ view: "text", label: _("Barcode"), name: "barcode", labelWidth: 200, required: true },
 				{ view: "text", label: _("Brand"), name: "brand", labelWidth: 200, required: true },
 				{ view: "text", label: _("Article"), name: "articul", labelWidth: 200, required: true },
 				{

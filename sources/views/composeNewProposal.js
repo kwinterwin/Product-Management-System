@@ -20,7 +20,7 @@ export default class ComposeNewProposalView extends JetView {
 		const form = {
 			view: "form",
 			elements: [
-				{ view: "text", name: "name", required: true, labelWidth: 200, label: "Product's name" },
+				{ view: "text", name: "name", required: true, labelWidth: 200, label: _("Product's name") },
 				{
 					view: "richselect",
 					label: _("Category"),

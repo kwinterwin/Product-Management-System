@@ -122,7 +122,7 @@
 
 .productRegistrationLayout .dollar-label {
 	position: absolute;
-	left    : 325px;
+	left    : 371px;
 }
 
 .button-icon button span::before {
@@ -303,3 +303,33 @@
 .supplierInformation h3 {
 	font-size: 15px;
 }
+/* 
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/mdi/MaterialIcons-Regular.eot);
+	src: local('Material Icons'),
+	  local('MaterialIcons-Regular'),
+	  url(/mdi/MaterialIcons-Regular.woff2) format('woff2'),
+	  url(/mdi/MaterialIcons-Regular.woff) format('woff'),
+	  url(/mdi/MaterialIcons-Regular.ttf) format('truetype');
+  }
+
+  
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
+  } */

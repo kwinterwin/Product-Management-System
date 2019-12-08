@@ -116,10 +116,10 @@ export default class GoodsReleasingView extends JetView {
 				{
 					cols: [
 						{
-							view: "counter", label: "Enter count of realizing product", labelWidth: 300, required: true, name: "count", on: {
+							view: "counter", label: _("Enter count of realizing product"), labelWidth: 350, required: true, name: "count", on: {
 								onChange: (newValue) => {
 									if (/\d+.\d/.test(newValue)) {
-										webix.message({ type: "error", text: "The quantity of goods cannot be a fractional number." });
+										webix.message({ type: "error", text: _("The quantity of goods cannot be a fractional number.") });
 										const form = this.getRoot().queryView({ view: "form" });
 										form.clear();
 									}
@@ -155,7 +155,7 @@ export default class GoodsReleasingView extends JetView {
 						if (form.validate()) {
 							const values = form.getValues();
 							if (selectedItem.total_count < values.count) {
-								webix.message({ type: "error", text: "The entered quantity is more than stored in the warehouse!" });
+								webix.message({ type: "error", text: _("The entered quantity is more than stored in the warehouse!") });
 							}
 							else {
 								const item = goods.getItem(selectedItem.id);
@@ -176,13 +176,13 @@ export default class GoodsReleasingView extends JetView {
 										if (result.json().insertId) {
 											webix.message({
 												type: "success",
-												text: "The deal is registered. A report about it can be seen in the 'Reports' section."
+												text: _("The deal is registered. A report about it can be seen in the 'Reports' section.")
 											});
 										}
 										else {
 											webix.message({
 												type: "error",
-												text: "The deal isn't registered."
+												text: _("The deal isn't registered.")
 											});
 										}
 									});

@@ -2,13 +2,16 @@
 <html>
 <head>
 	<title>Bullet Graph - Color by value</title>
-	<script src="../../../codebase/webix.js?v=7.0.2" type="text/javascript"></script>
-	<link rel="STYLESHEET" type="text/css" href="../../../codebase/webix.css?v=7.0.2">
+	<script src="../../../codebase/webix.js?v=7.1.0" type="text/javascript"></script>
+	<link rel="STYLESHEET" type="text/css" href="../../../codebase/webix.css?v=7.1.0">
 	<style type="text/css">
 		.webix_bullet_graph_svg {
 			margin: 10px;
 		}
 	</style>
+	<script src="../../common/seedrandom.js?v=7.1.0"></script>
+	<script> Math.seedrandom('samples');</script>
+</head>
 	<body>
 		<script>
 		function warningLevels(v){

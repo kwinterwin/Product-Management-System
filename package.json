@@ -29,6 +29,7 @@
     "webpack-dev-server": "^2.11.5"
   },
   "dependencies": {
+    "@mdi/font": "^4.6.95",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.17.1",

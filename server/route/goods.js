@@ -86,7 +86,7 @@ let goodsData = {
 
     getGood(req, res) {
         const id = req.params.id;
-        const query = `select * from prms.goods where category=${id}`;
+        const query = `select * from prms.goods where category_id=${id}`;
         con.con.query(query, (err, result) => {
             if (err) {
                 res.status(500).send(err);

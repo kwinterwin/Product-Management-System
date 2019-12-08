@@ -42,7 +42,7 @@ export default class ProductsByCategoriesView extends JetView {
 				{ id: "name", header: _("Product name"), fillspace: true },
 				{ id: "manuf_country", header: _("Сountry of production"), adjust: true },
 				{ id: "price", header: _("Price"), adjust: true },
-				{ id: "count", header: _("Count"), adjust: true },
+				{ id: "total_count", header: _("Count"), adjust: true },
 				{ id: "editInformation", header: "", template: "<i class='mdi mdi-eye'></i>", width: 40 }
 			],
 			onClick: {
