@@ -26,7 +26,7 @@
     "less-loader": "^4.0.5",
     "url-loader": "^0.5.9",
     "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "@mdi/font": "^4.6.95",
