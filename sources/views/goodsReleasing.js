@@ -148,7 +148,8 @@ export default class GoodsReleasingView extends JetView {
 					]
 				},
 				{
-					view: "button", value: "Realize", inputWidth: 200, align: "right", click: () => {
+					view: "button", value: _("Realize"), inputWidth: 200, align: "right", click: () => {
+						debugger
 						const form = this.getRoot().queryView({ view: "form" });
 						const datatable = this.getRoot().queryView({ view: "datatable" });
 						const selectedItem = datatable.getSelectedItem();
@@ -192,7 +193,7 @@ export default class GoodsReleasingView extends JetView {
 				}
 			],
 			rules: {
-				"total_count": (value) => {
+				"count": (value) => {
 					return (webix.rules.isNumber(value) && value !== 0);
 				}
 			}

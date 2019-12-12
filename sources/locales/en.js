@@ -84,7 +84,7 @@ export default {
     "Compose":"Compose",
     "Please, choose number of good's proposal":"Please, choose number of good's proposal",
     "You can enter barcode of product":"You can enter barcode of product",
-
+    "Realize":"Realize",
     "The deal isn't registered.":"The deal isn't registered.",
     "The deal is registered. A report about it can be seen in the 'Reports' section.":"The deal is registered. A report about it can be seen in the 'Reports' section.",
     "The entered quantity is more than stored in the warehouse!":"The entered quantity is more than stored in the warehouse!",

@@ -1,11 +1,5 @@
 const con = require("../../server");
 
-// function formatDate(isoDate) {
-//     const date = new Date(Date.parse(isoDate));
-//     return date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-"
-//         + date.getUTCDate() + " " + date.getUTCHours() + ":" + date.getUTCMinutes() + ":" + date.getUTCSeconds();
-// }
-
 let reportsData = {
 
     getAllRealizeReport(req, res) {
@@ -49,23 +43,5 @@ let reportsData = {
             }
         });
     },
-
-    // updateProposal(req, res) {
-    //     const proposal = req.body;
-    //     const query = `Update prms.proposals set name = "${proposal.name}", user_id = ${proposal.user_id}, category_id = ${proposal.category_id}, 
-    //                         count = ${proposal.count}, supplier_id = ${proposal.supplier_id}, date_registration = "${formatDate(proposal.date_registration)}",
-    //                         status = "${proposal.status}", date_approve = "${formatDate(proposal.date_approve)}"
-    //                         where id = ${proposal.id}
-    //                     `;
-    //     con.con.query(query, (err, result) => {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.json(result);
-    //         }
-    //     });
-    // }
 };
 module.exports = reportsData;
