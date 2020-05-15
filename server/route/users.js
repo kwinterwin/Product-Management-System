@@ -28,7 +28,7 @@ let usersData = {
 						req.session.user = user;
 						res.send(user);
 					}
-					else res.json({ type: "error", "message": "You enter incorrect login or password" });
+					else res.json({ type: "error", "message": "Вы ввели неверный логин или пароль" });
 				});
 			}
 			else if (result.length == 1) {

@@ -63,7 +63,7 @@ export default class LoginView extends JetView {
 			hidden: true,
 			elements: [
 				{ view: "template", template: _("Register"), type: "header", borderless: true, localId: "header" },
-				{ view: "text", label: _("Login"), name: "login", labelWidth: 200, invalidMessage: _("Login can't be empty."), localId: "loginField" },
+				{ view: "text", label: _("Login"), name: "login", labelWidth: 200, localId: "loginField" },
 				{ view: "text", label: _("Password"), type: "password", name: "password", labelWidth: 200, invalidMessage: _("Password can't be empty.") },
 				{
 					view: "text", label: _("Confirm password"), type: "password", name: "confirm_password", labelWidth: 200, invalidMessage: _("This field can't be empty.")
@@ -76,7 +76,7 @@ export default class LoginView extends JetView {
 				}
 			],
 			rules: {
-				"login": webix.rules.isNotEmpty,
+				"login": webix.rules.isEmail,
 				"password": webix.rules.isNotEmpty
 			}
 		};

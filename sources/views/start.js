@@ -51,7 +51,7 @@ export default class Start extends JetView {
 			data: [
 				{ id: "composeNewProposal", value: _("Compose a new proposal"), icon: "mdi mdi-ballot" },
 				{ id: "productRegistration", value: _("Product registration"), icon: "mdi mdi-cart-plus" },
-				{ id: "", value: _("Product searching"), icon: "mdi mdi-search-web" },
+				// { id: "", value: _("Product searching"), icon: "mdi mdi-search-web" },
 				{ id: "goodsReleasing", value: _("Goods releasing"), icon: "mdi mdi-truck" },
 				{ id: "reports", value: _("Reports"), icon: "mdi mdi-clipboard-text" },
 				{ id: "userSettings", value: _("Settings"), icon: "mdi mdi-cogs" }

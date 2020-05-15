@@ -82,6 +82,7 @@ app.put("/server/proposals/:id", proposals.updateProposal);
 
 app.post("/server/realize_report", reports.addRealizeReport);
 app.get("/server/realize_report", reports.getAllRealizeReport);
+app.get("/server/realize_group_report", reports.getAllGroupRealizeReport);
 
 app.get("/server/registration_report", reports.getAllRegistrationReport);
 

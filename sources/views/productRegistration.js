@@ -73,7 +73,7 @@ export default class ProductRegistrationView extends JetView {
 							obj.date_completed = new Date();
 							obj.status = "completed";
 							proposals.updateItem(this.comboId, obj);
-							webix.message({type:"success", text:"Product was registration."});
+							webix.message({type:"success", text:_("Product was registration.")});
 							form.clear();
 						}
 					}

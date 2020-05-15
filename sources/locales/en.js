@@ -89,6 +89,10 @@ export default {
     "The deal is registered. A report about it can be seen in the 'Reports' section.":"The deal is registered. A report about it can be seen in the 'Reports' section.",
     "The entered quantity is more than stored in the warehouse!":"The entered quantity is more than stored in the warehouse!",
     "The quantity of goods cannot be a fractional number.":"The quantity of goods cannot be a fractional number.",
-    "Enter count of realizing product":"Enter count of realizing product"
+    "Enter count of realizing product":"Enter count of realizing product",
+    "You enter incorrect login or password":"You enter incorrect login or password",
+    "Product was registration.":"Product was registration.",
+    "Proposal was successfully registrated. Please, wait approvement from admin.":"Proposal was successfully registrated. Please, wait approvement from admin.",
+    "Login doesn't meet the requirements (email)":"Login doesn't meet the requirements (email)"
 
 };
