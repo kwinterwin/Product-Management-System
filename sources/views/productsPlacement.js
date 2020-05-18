@@ -20,9 +20,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 0, y: 0, dx: 1, dy: 1
+          }, x: 0, y: 0, dx: 1.6, dy: 1
         },
         {
           css: "boxy red", template: () => {
@@ -36,9 +35,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 2, y: 0, dx: 1, dy: 1
+          }, x: 1.65, y: 0, dx: 1.6, dy: 1
         },
         {
           css: "boxy red", template: () => {
@@ -52,9 +50,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 4, y: 0, dx: 1, dy: 1
+          }, x: 3.3, y: 0, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -68,9 +65,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 0, y: 1, dx: 1, dy: 1
+          }, x: 0, y: 1, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -84,9 +80,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 2, y: 1, dx: 1, dy: 1
+          }, x: 1.65, y: 1, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -100,9 +95,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 4, y: 1, dx: 1, dy: 1
+          }, x: 3.3, y: 1, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -116,9 +110,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 0, y: 2, dx: 1, dy: 1
+          }, x: 0, y: 2, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -132,9 +125,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 2, y: 2, dx: 1, dy: 1
+          }, x: 1.65, y: 2, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -148,9 +140,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 4, y: 2, dx: 1, dy: 1
+          }, x: 3.3, y: 2, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -164,9 +155,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 0, y: 3, dx: 1, dy: 1
+          }, x: 0, y: 3, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -180,9 +170,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 2, y: 3, dx: 1, dy: 1
+          }, x: 1.65, y: 3, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -196,9 +185,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 4, y: 3, dx: 1, dy: 1
+          }, x: 3.3, y: 3, dx: 1.65, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -212,9 +200,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 0, y: 4, dx: 1, dy: 1
+          }, x: 0, y: 4, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -228,9 +215,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 2, y: 4, dx: 1, dy: 1
+          }, x: 1.65, y: 4, dx: 1.6, dy: 1
         },
         {
           css: "boxy", template: () => {
@@ -244,9 +230,8 @@ export default class ProductsPlacementView extends JetView {
               }
             }
             template += "</ul>";
-            debugger
             return template;
-          }, x: 4, y: 4, dx: 1, dy: 1
+          }, x: 3.3, y: 4, dx: 1.6, dy: 1
         },
       ]
     };

@@ -304,13 +304,15 @@
 
 .boxy ul{
 	list-style-image:url('http://www.sitehere.ru/wp-content/uploads/2013/08/medal_award_bronze16.png');
-	padding-inline-start: 28px;
-	padding-top: 6px;
+	padding-inline-start: 23px;
+	/* padding-top: 6px; */
 	margin: 0;
 }
 
 .boxy ul li{
-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	font-size: 10px;
+	color:black;
 }
 
 .boxy.red {
