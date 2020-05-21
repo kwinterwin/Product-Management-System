@@ -1,4 +1,4 @@
-Webix UI v.7.1.0
+Webix UI v.7.3.2
 ================
 
 https://webix.com
@@ -32,4 +32,4 @@ or have some issue with API and behavior of the component,
 please contact us at support@webix.com
 
 
-(c) XB Software Ltd. 2019
+(c) XB Software Ltd. 2020

@@ -75,6 +75,7 @@ export default class ProductRegistrationView extends JetView {
 							proposals.updateItem(this.comboId, obj);
 							webix.message({type:"success", text:_("Product was registration.")});
 							form.clear();
+							window.location.reload();
 						}
 					}
 				},
